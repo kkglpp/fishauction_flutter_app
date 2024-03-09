@@ -7,7 +7,6 @@ import 'package:logger/logger.dart';
 
 abstract class DataSource {
 //env 파일에서 가져온 URL 주소.
-
   get(
     String addurl,
     Map<String, String>? headers,
@@ -64,51 +63,35 @@ class DataSourceImpl implements DataSource {
   //Post 함수
   @override
   post(String addurl, data, {Map<String, String>? headers}) async {
-    print("Post 시작 url: "+defaultURL.toString());
     var url = Uri.parse('$defaultURL$addurl');
-    print (url);
     try {
-      print("try 들어옴 1줄");
       var response = await http.post(
         url,
         headers: headers,
-
         body: json.encode(data),
       );
-      print(response.body);
-      print("try 들어옴 2줄");
-      print(response.statusCode);
+
       if (!validStatusCodes.contains(response.statusCode))
         return ResponseResult.error;
-      print("post 실행문제 없음. ");
-      // var bodyData = json.decode(utf8.decode(response.bodyBytes));
-      // print("**************************************************************");
-      // print("______ body 데이터 ______");
-      // print(bodyData);
-      // print("______ head 데이터 ______");
-      // print(response.headers);
-      // print("**************************************************************");
 
       return response;
     } catch (e) {
       Logger().e("$addurl\n$e");
-      print("post 실행 문제 있음");
-      print(e);
     }
   } //end of post
 
   //Post File 함수
-  postFile(String addurl, String filePath, {Map<String, String>? headers}) async {
+  postFile(String addurl, String filePath,
+      {Map<String, String>? headers}) async {
     print(defaultURL);
     var url = Uri.parse('$defaultURL$addurl');
-    var request = http.MultipartRequest('POST',url);
+    var request = http.MultipartRequest('POST', url);
     request.headers.addAll(headers!);
-  // 파일을 업로드할 경로 설정
-  var file = await http.MultipartFile.fromPath('file', filePath);
+    // 파일을 업로드할 경로 설정
+    var file = await http.MultipartFile.fromPath('file', filePath);
 
-  // MultipartFile을 요청에 추가
-  request.files.add(file);
-
+    // MultipartFile을 요청에 추가
+    request.files.add(file);
 
     try {
       print("try 들어옴 1줄");
@@ -121,14 +104,9 @@ class DataSourceImpl implements DataSource {
       print("file 넘기고 받은 responseData to String : ");
       print(String.fromCharCodes(responseData));
 
-
-
-
-
       if (!validStatusCodes.contains(response.statusCode))
         return ResponseResult.error;
       print("post 실행문제 없음. ");
-
 
       return response;
     } catch (e) {

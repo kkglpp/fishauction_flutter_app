@@ -21,18 +21,16 @@ class LoginPageRepository {
 
     try {
       if (response.statusCode == 200) {
+        
         var rheader = response.headers;
         var rbody = json.decode(utf8.decode(response.bodyBytes));
         var rhead = response.headers;
+
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('accessToken', rheader['access_token']);
         await prefs.setString('refreshToken', rheader['refresh_token']);
         await prefs.setString('nickname', rbody[0]['nickname']);
         await prefs.setString('uid', uid);
-        // print("*************");
-        // print(prefs.getString('accessToken'));
-        // print(prefs.getString('refresh_token'));
-        // print(prefs.getString('nickname'));
 
         return true;
       }

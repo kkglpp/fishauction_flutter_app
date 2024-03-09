@@ -7,6 +7,7 @@ class AuctionPageController extends Cubit<AuctionModel?>{
 
   AuctionPageRepository auctionPageRepository = AuctionPageRepository();
 
+
   getAuction(int auctionid) async{
     await auctionPageRepository.getAuction(auctionid);
     emit(auctionPageRepository.auction);

@@ -10,6 +10,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
+
+
 // import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 // import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -47,27 +49,20 @@ class AuctionPageRepository {
 
   bidAuction(int aucID, int newPrice) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     var accessToken = prefs.get('accessToken');
     var headers = {
       'accept': 'application/json',
       'Authorization': 'Bearer $accessToken'
     };
-
     var response = await DataSourceImpl()
         .patch('auctions/$aucID/$newPrice', null, headers: headers);
-
     return response.statusCode;
   }
 
   //사진을 FireBase에 올리는 요청
   uploadPic(String? filepath, String pic) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-        // String pic = prefs.get('uid').toString() +
-        // DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now()).toString();
         bool uploadeResult = false ;
-    // bool uploadeResult = await AuctionPageRepository().uploadPic(filepath,pic);
     try {
       // Firebase Storage에 이미지 업로드
       firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance

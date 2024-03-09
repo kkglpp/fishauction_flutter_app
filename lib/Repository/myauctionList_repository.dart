@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class MyAuctionListRepositroy {
   List<DoneAuctionModel> myAucList = [];
 
-  getMyAuctionList(String type) async {
+  Future<String> getMyAuctionList(String type) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     myAucList = [];
