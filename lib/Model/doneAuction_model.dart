@@ -1,52 +1,24 @@
-class DoneAuctionModel {
-  late int biddedid;
-  late String auctionid;
-  late String buyerid;
-  late int biddedprice;
-  late String biddeddate;
-  late String? address;
-  late String? deliverydate;
-  late String? paymentdate;
-  get getBiddedid => this.biddedid;
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  set setBiddedid(biddedid) => this.biddedid = biddedid;
+part 'doneAuction_model.freezed.dart';
+part 'doneAuction_model.g.dart';
 
-  get getAuctionid => this.auctionid;
+@freezed
+class DoneAuctionModel with _$DoneAuctionModel {
+  const factory DoneAuctionModel({
 
-  set setAuctionid(auctionid) => this.auctionid = auctionid;
+  required int biddedid,
+  required String auctionid,
+  required String buyerid,
+  required double biddedprice,
+  required String biddeddate,
+  required String address,
+  required String? deliverydate,
+  required String? paymentdate,
+    
 
-  get getBuyerid => this.buyerid;
+  }) =_DoneAuctionModel;  
 
-  set setBuyerid(buyerid) => this.buyerid = buyerid;
-
-  get getBiddedprice => this.biddedprice;
-
-  set setBiddedprice(biddedprice) => this.biddedprice = biddedprice;
-
-  get getBiddeddate => this.biddeddate;
-
-  set setBiddeddate(biddeddate) => this.biddeddate = biddeddate;
-
-  get getAddress => this.address;
-
-  set setAddress(address) => this.address = address;
-
-  get getDeliverydate => this.deliverydate;
-
-  set setDeliverydate(deliverydate) => this.deliverydate = deliverydate;
-
-  get getPaymentdate => this.paymentdate;
-
-  set setPaymentdate(paymentdate) => this.paymentdate = paymentdate;
-
-  DoneAuctionModel({
-    required this.biddedid,
-    required this.auctionid,
-    required this.buyerid,
-    required this.biddedprice,
-    required this.biddeddate,
-    this.address,
-    this.deliverydate,
-    this.paymentdate,
-  });
+  factory DoneAuctionModel.fromJson(Map<String, dynamic> json) => _$DoneAuctionModelFromJson(json);
 }

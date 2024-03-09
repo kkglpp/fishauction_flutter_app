@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fishauction_app/DataSource/datasource_impl.dart';
 import 'package:fishauction_app/Model/doneAuction_model.dart';
+import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyAuctionListRepositroy {
@@ -24,22 +25,27 @@ class MyAuctionListRepositroy {
         var rbody = json.decode(utf8.decode(response.bodyBytes));
 
         List<dynamic> result = rbody['result'];
+        print("asdasdas : " );
+        
 
-        for (int i = 0; i < result.length; i++) {
-          myAucList.add(DoneAuctionModel(
-            biddedid: result[i]["biddedid"],
-            auctionid: result[i]["auctionid"],
-            buyerid: result[i]["buyerid"],
-            biddedprice: result[i]["biddedprice"].toInt(),
-            biddeddate: result[i]["biddeddate"],
-            address: result[i]["address"],
-            deliverydate: result[i]["deliverydate"],
-            paymentdate: result[i]["paymentdate"],
-          ));
-        }
+        myAucList.addAll(result.map((data) => DoneAuctionModel.fromJson(data)));
+        print("Adssda");
+        // for (int i = 0; i < result.length; i++) {
+        //   myAucList.add(DoneAuctionModel(
+        //     biddedid: result[i]["biddedid"],
+        //     auctionid: result[i]["auctionid"],
+        //     buyerid: result[i]["buyerid"],
+        //     biddedprice: result[i]["biddedprice"].toInt(),
+        //     biddeddate: result[i]["biddeddate"],
+        //     address: result[i]["address"],
+        //     deliverydate: result[i]["deliverydate"],
+        //     paymentdate: result[i]["paymentdate"],
+        //   ));
+        // }
 
         return "success";
       } catch (e) {
+        Logger().e("에러: $e");
         return "목록이 없습니다.";
       }
 

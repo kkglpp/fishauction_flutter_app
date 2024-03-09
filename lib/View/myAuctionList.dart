@@ -1,6 +1,7 @@
 import 'package:fishauction_app/Controller/myauctionList_RadioController.dart';
 import 'package:fishauction_app/Custom/auctionCard.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
+import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Model/doneAuction_model.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,11 @@ class MyAuctionList extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 200,
+                    width: 160,
                     height: 80,
                     child: RadioListTile(
-                      title: TextBig(
-                        msg: "나의 판매 내역",
+                      title: TextMiddle(
+                        msg: "판매 내역",
                         clr: Theme.of(context).colorScheme.onBackground,
                       ),
                       value: 1,
@@ -42,11 +43,11 @@ class MyAuctionList extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 200,
+                    width: 160,
                     height: 80,
                     child: RadioListTile(
-                      title: TextBig(
-                        msg: "나의 구매 내역",
+                      title: TextMiddle(
+                        msg: "구매 내역",
                         clr: Theme.of(context).colorScheme.onBackground,
                       ),
                       value: 2,

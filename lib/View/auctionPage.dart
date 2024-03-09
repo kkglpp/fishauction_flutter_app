@@ -71,17 +71,14 @@ class AuctionPage extends StatelessWidget {
                       경매 타이틀 -  TextTitle
                       판매자 아이디 + 판매 상황 - Row
                       경매 등록 일시 - Row - textsmall
-                  
                       구분선 - padding - sizedbox - Divder
-                  
-                      
                        */
                       TextTitle(
                         msg: state.title,
                         clr: Theme.of(context).colorScheme.onBackground,
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -114,13 +111,12 @@ class AuctionPage extends StatelessWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 15, 0, 30),
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                         child: SizedBox(
                           width: widthSize * 1.8,
                           child: const Divider(),
                         ),
                       ),
-
                       /*  화면 구성 2 
                           경매 품목 사진 - image
                           판매자 한마디 - 
@@ -128,7 +124,6 @@ class AuctionPage extends StatelessWidget {
                           현재 입찰 가격 - 
                           입찰금액 조절 - 
                           입찰 버튼, 취소 버튼 -
-                      
                        */
                       SizedBox(
                         height: widthSize,
@@ -158,9 +153,7 @@ class AuctionPage extends StatelessWidget {
                                 );
                         }),
                       ),
-                      const SizedBox(
-                        height: 50,
-                      ),
+                      const Spacer(),
                       Container(
                         width: widthSize * 1.9,
                         height: widthSize * 0.6,
@@ -176,9 +169,7 @@ class AuctionPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      const Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -221,9 +212,7 @@ class AuctionPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const Spacer(),
                       BlocBuilder<AuctionPageSliderController, int>(
                           builder: (context, sstate) {
                         return Column(
@@ -231,6 +220,7 @@ class AuctionPage extends StatelessWidget {
                           children: [
                             Row(
                               children: [
+                                const Spacer(),
                                 IconButton(
                                   onPressed: () {
                                     if (sstate - 5000 < 10000) {
@@ -242,13 +232,14 @@ class AuctionPage extends StatelessWidget {
                                               (sstate - 5000).toDouble());
                                     }
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.remove,
-                                    size: 30,
+                                    size: widthSize * 0.15,
                                   ),
                                 ),
+                                const Spacer(),
                                 SizedBox(
-                                  width: widthSize * 1.5,
+                                  width: widthSize * 1.4,
                                   child: Slider(
                                       value: sstate.toDouble(),
                                       min: 10000,
@@ -260,6 +251,7 @@ class AuctionPage extends StatelessWidget {
                                             .sliderChange(value);
                                       }),
                                 ),
+                                const Spacer(),
                                 IconButton(
                                   onPressed: () {
                                     if (sstate + 5000 > 100000) {
@@ -271,11 +263,12 @@ class AuctionPage extends StatelessWidget {
                                               (sstate + 5000).toDouble());
                                     }
                                   },
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.add,
-                                    size: 30,
+                                    size: widthSize * 0.15,
                                   ),
                                 ),
+                                const Spacer(),
                               ],
                             ),
                             TextMiddle(
@@ -320,7 +313,8 @@ class AuctionPage extends StatelessWidget {
                             )
                           ],
                         );
-                      })
+                      }),
+                      const Spacer(),
                     ],
                   ),
                 ),

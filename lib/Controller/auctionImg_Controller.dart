@@ -9,8 +9,12 @@ class AuctoinImgController extends Cubit <File?> {
   loadImg(String filename) async {
     print("FileName : "+filename);
     File tmpfile = await AuctionPageRepository().downloadPic(filename);
-
+  try{
     emit(tmpfile);
+   } catch (e){
+    print(e);
+      
+    }
 
     
   }

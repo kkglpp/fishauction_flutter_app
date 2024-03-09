@@ -9,7 +9,7 @@ class AuctionCard extends StatelessWidget {
   final int biddedid;
   final String auctionid;
   final String buyerid;
-  final int biddedprice;
+  final double biddedprice;
   final String biddeddate;
   final String? address;
   final String? deliverydate;
