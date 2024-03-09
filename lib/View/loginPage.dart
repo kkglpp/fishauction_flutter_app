@@ -1,7 +1,7 @@
 import 'package:fishauction_app/Custom/insertTextBox.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Repository/loginPage_repository.dart';
+import 'package:fishauction_app/Repository/auth_repository.dart';
 import 'package:fishauction_app/View/tabbarViewPage.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +30,7 @@ class loginPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     var loginrs =
-                        await LoginPageRepository().doLogin(idTec.text, pwTec.text);
+                        await AuthRepository().doLogin(idTec.text, pwTec.text);
                     idTec.text = "";
                     pwTec.text = "";
                     loginAlert(context, loginrs);
