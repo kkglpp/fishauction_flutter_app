@@ -5,13 +5,11 @@ class PointChargerController extends Cubit<int>{
 
 addPoint(){
 
-  print("add");
   emit(state+10000);
 
 }
 subPoint(){
 
-  print("sub");
   emit(state-10000);
 
 }

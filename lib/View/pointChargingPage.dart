@@ -1,9 +1,9 @@
 import 'package:fishauction_app/Controller/pointChanging_controller.dart';
-import 'package:fishauction_app/View/pointCharger_controller.dart';
+import 'package:fishauction_app/Controller/pointCharger_controller.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Repository/myPoints_repository.dart';
+import 'package:fishauction_app/Repository/balance_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -349,7 +349,7 @@ showFailedDialog(BuildContext ctx){
 //function
 doCharge(BuildContext ctx, int amount)async{
   try{
-  await MyPointsRepository().chargeMyPoints(amount);
+  await BalanceRepository().chargeMyPoints(amount);
   }catch (e){
     showFailedDialog(ctx);
   }

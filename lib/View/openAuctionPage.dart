@@ -6,11 +6,13 @@ import 'package:fishauction_app/Custom/insertTextBox.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Repository/auctionPage_repository.dart';
+import 'package:fishauction_app/DataSource/firebase_datasource_impl.dart';
+import 'package:fishauction_app/Repository/auctions_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:logger/logger.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -233,7 +235,7 @@ return Scaffold(
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String pic = '${prefs.get('uid')}${DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now())}.jpg';
 
-    bool uploadeResult = await AuctionPageRepository().uploadPic(filepath, pic);
+    bool uploadeResult = await FirebaseDataSourceImpl().uploadPic(filepath, pic);
     try{
     if (uploadeResult) {
       Map<String, String>? postdata = {
@@ -244,7 +246,7 @@ return Scaffold(
         'pic': pic
       };
 
-      bool result = await AuctionPageRepository().openAuction(postdata);
+      bool result = await AuctionsRepository().openAuction(postdata);
 
       if (result) {
         successAlert(context);
@@ -256,7 +258,7 @@ return Scaffold(
     }
     }
     catch (e){
-      print(e);
+        Logger().e("에러: $e");
     }
   }
 

@@ -1,6 +1,5 @@
 import 'package:fishauction_app/Controller/myauctionList_RadioController.dart';
 import 'package:fishauction_app/Custom/auctionCard.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Model/doneAuction_model.dart';

@@ -6,7 +6,7 @@ import 'package:fishauction_app/Controller/auctionPage_SliderController.dart';
 import 'package:fishauction_app/Custom/textSmall.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Model/auction_model.dart';
-import 'package:fishauction_app/Repository/auctionPage_repository.dart';
+import 'package:fishauction_app/Repository/auctions_repository.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fishauction_app/Custom/textBig.dart';
@@ -326,7 +326,7 @@ class AuctionPage extends StatelessWidget {
   //function
 
   doBid(BuildContext ctx, int aucID, int newPrice) async {
-    int rsStatus = await AuctionPageRepository().bidAuction(aucID, newPrice);
+    int rsStatus = await AuctionsRepository().bidAuction(aucID, newPrice);
     if (rsStatus == 200) {
       bidAlert(ctx, true);
     } else {

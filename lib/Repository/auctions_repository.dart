@@ -7,12 +7,10 @@ import 'package:fishauction_app/Model/auction_model.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuctionRepository {
-  List<AuctionModel> auctionList = [];
-
+class AuctionsRepository {
   // 모든 경매리스트 가져오는 함수
-  getWholeList() async {
-    auctionList = [];
+  Future<List<AuctionModel>> getWholeList() async {
+    List<AuctionModel> auctionList = [];
 
     var headers = {
       'accept': 'application/json',
@@ -25,9 +23,8 @@ class AuctionRepository {
     그렇기때문에 이를 map 을 이용해서 내가 지정한 모델의 리스트로 바꿔야 한다. */
     List<dynamic> result = rbody['result'];
     auctionList.addAll(result.map((data) => AuctionModel.fromJson(data)));
+    return auctionList;
   } // end of getWholeList
-
-  // late AuctionModel? auction;
 
   // Function01 : 경매1개의 정보 가저오는 함수.
   Future<AuctionModel?> getAuction(int auctionid) async {
@@ -60,49 +57,6 @@ class AuctionRepository {
     var response = await DataSourceImpl()
         .patch('auctions/$aucID/$newPrice', null, headers: headers);
     return response.statusCode;
-  }
-
-  //사진을 FireBase에 올리는 요청
-  uploadPic(String? filepath, String pic) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool uploadeResult = false;
-    try {
-      // Firebase Storage에 이미지 업로드
-      firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-          .ref()
-          // .child('images')    // 폴더 추가하고 거기에 넣을 때 쓰는 코드
-          .child('$pic.jpg');
-      await ref.putFile(File(filepath!));
-      uploadeResult = true;
-    } catch (e) {
-      uploadeResult = false;
-    }
-    return uploadeResult;
-  } // uploadPic
-
-  //이미지 가져오는 함수
-  downloadPic(String? filepath) async {
-    // Firebase Storage에서 이미지 다운로드
-    String downloadURL = "asd.jpg";
-    try {
-      firebase_storage.Reference ref =
-          firebase_storage.FirebaseStorage.instance.ref(filepath);
-
-      downloadURL = await ref.getDownloadURL();
-    } catch (e) {
-      firebase_storage.Reference ref =
-          firebase_storage.FirebaseStorage.instance.ref('${filepath!}.jpg');
-      downloadURL = await ref.getDownloadURL();
-    }
-    http.Response response = await http.get(Uri.parse(downloadURL));
-    Uint8List resultPic = response.bodyBytes;
-    Directory tempDir = await getTemporaryDirectory();
-    // 임시 파일 경로 생성
-    String tempPath = tempDir.path + filepath!;
-    File tmpFile = File(tempPath);
-    await tmpFile.writeAsBytes(resultPic);
-
-    return tmpFile;
   }
 
   // 경매 등록하는 요청

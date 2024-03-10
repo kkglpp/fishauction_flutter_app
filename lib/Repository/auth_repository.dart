@@ -16,12 +16,10 @@ class AuthRepository {
     Map<String, String>? postdata = {"id": uid, "password": upw};
     var response =
         await DataSourceImpl().post("auth/", postdata, headers: headers);
-
     try {
       if (response.statusCode == 200) {
         var rheader = response.headers;
         var rbody = json.decode(utf8.decode(response.bodyBytes));
-
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('accessToken', rheader['access_token']);
         await prefs.setString('refreshToken', rheader['refresh_token']);

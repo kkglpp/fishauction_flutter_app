@@ -1,6 +1,6 @@
 import 'package:fishauction_app/Controller/myInfoPage_controller.dart';
 import 'package:fishauction_app/Controller/pointChanging_controller.dart';
-import 'package:fishauction_app/View/pointCharger_controller.dart';
+import 'package:fishauction_app/Controller/pointCharger_controller.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
