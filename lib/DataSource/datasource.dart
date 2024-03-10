@@ -7,10 +7,10 @@ import 'package:logger/logger.dart';
 
 enum ResponseResult { error, success }
 final String? defaultURL = dotenv.env['baseurl'];
-var validStatusCodes = List.generate(100, (i) => 200 + i);  // request 성공할떄의 statuscode
+var validStatusCodes = List.generate(100, (i) => 200 + i);  // request 성공할떄의 statuscode 범위
 
 abstract class DataSource {
-//env 파일에서 가져온 URL 주소.
+  
   get(String addurl, Map<String, String>? headers);
   post(String addurl, dynamic data, {Map<String, String>? headers});
   put(String addurl, dynamic data, {Map<String, String>? headers});

@@ -11,10 +11,7 @@ class DataSourceImpl implements DataSource {
   get(String addurl, Map<String, String>? headers) async {
     var url = Uri.parse('$defaultURL$addurl');
     try {
-      var response = await http.get(
-        url,
-        headers: headers,
-      );
+      var response = await http.get(url, headers: headers);
 
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
@@ -23,6 +20,7 @@ class DataSourceImpl implements DataSource {
       return response;
     } catch (e) {
       Logger().e("$addurl\n$e");
+      return ResponseResult.error;
     }
   } //end of get
 
@@ -31,11 +29,8 @@ class DataSourceImpl implements DataSource {
   post(String addurl, data, {Map<String, String>? headers}) async {
     var url = Uri.parse('$defaultURL$addurl');
     try {
-      var response = await http.post(
-        url,
-        headers: headers,
-        body: json.encode(data),
-      );
+      var response =
+          await http.post(url, headers: headers, body: json.encode(data));
 
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
@@ -52,15 +47,10 @@ class DataSourceImpl implements DataSource {
   put(String addurl, data, {Map<String, String>? headers}) async {
     var url = Uri.parse('$defaultURL$addurl');
     try {
-      var response = await http.get(
-        url,
-        headers: headers,
-      );
+      var response = await http.get(url, headers: headers);
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
       }
-      print("PUT 실행문제 없음. ");
-
       return response;
     } catch (e) {
       Logger().e("$addurl\n$e");
@@ -73,10 +63,7 @@ class DataSourceImpl implements DataSource {
   patch(String addurl, data, {Map<String, String>? headers}) async {
     var url = Uri.parse('$defaultURL$addurl');
     try {
-      var response = await http.patch(
-        url,
-        headers: headers,
-      );
+      var response = await http.patch(url, headers: headers);
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
       }
@@ -91,10 +78,7 @@ class DataSourceImpl implements DataSource {
   delete(String addurl, data, {Map<String, String>? headers}) async {
     var url = Uri.parse('$defaultURL$addurl');
     try {
-      var response = await http.get(
-        url,
-        headers: headers,
-      );
+      var response = await http.get(url, headers: headers);
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
       }

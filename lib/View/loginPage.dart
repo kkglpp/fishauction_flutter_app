@@ -89,5 +89,5 @@ class loginPage extends StatelessWidget {
             ],
           );
         });
-  }
+  }//end of loginAlert
 } //end of loginPage
