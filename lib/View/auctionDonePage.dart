@@ -15,16 +15,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:intl/intl.dart';
 
-class AuctionPage extends StatelessWidget {
+class AuctionDonePage extends StatelessWidget {
   int auctionid;
 
-  String? pic;
-
-  AuctionPage({
+  AuctionDonePage({
     Key? key,
     required this.auctionid,
-
-    required this.pic,
   }) : super(key: key);
 
   @override
@@ -119,13 +115,13 @@ class AuctionPage extends StatelessWidget {
                             height: widthSize,
                             width: widthSize * 1.2,
                             child: BlocBuilder<AuctoinImgController, File?>(
-                                builder: (context, state) {
-                              if (state == null) {
-                                _loadImg(context, pic!);
+                                builder: (context, sstate) {
+                              if (sstate == null) {
+                                _loadImg(context, state.pic);
                               }
-                              return state != null
+                              return sstate != null
                                   ? Image.file(
-                                      state,
+                                      sstate,
                                       width: widthSize,
                                       fit: BoxFit.fitWidth,
                                       errorBuilder: (context, error, stackTrace) {
@@ -193,7 +189,7 @@ class AuctionPage extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextMiddle(
-                                      msg: "현재 가격 : \t ${state.pricenow} 원",
+                                      msg: "판매 가격 : \t ${state.pricenow} 원",
                                       clr: Theme.of(context)
                                           .colorScheme
                                           .onBackground,
@@ -203,107 +199,18 @@ class AuctionPage extends StatelessWidget {
                             ],
                           ),
                           const Spacer(),
-                          BlocBuilder<AuctionPageSliderController, int>(
-                              builder: (context, sstate) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Spacer(),
-                                    IconButton(
-                                      onPressed: () {
-                                        if (sstate - 5000 < 10000) {
-                                          cantAlert(context, true);
-                                        } else {
-                                          context
-                                              .read<AuctionPageSliderController>()
-                                              .sliderChange(
-                                                  (sstate - 5000).toDouble());
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.remove,
-                                        size: widthSize * 0.15,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    SizedBox(
-                                      width: widthSize * 1.4,
-                                      child: Slider(
-                                          value: sstate.toDouble(),
-                                          min: 10000,
-                                          divisions: (100000 - 10000) ~/ 5000,
-                                          max: 100000,
-                                          onChanged: (value) {
-                                            context
-                                                .read<AuctionPageSliderController>()
-                                                .sliderChange(value);
-                                          }),
-                                    ),
-                                    const Spacer(),
-                                    IconButton(
-                                      onPressed: () {
-                                        if (sstate + 5000 > 100000) {
-                                          cantAlert(context, false);
-                                        } else {
-                                          context
-                                              .read<AuctionPageSliderController>()
-                                              .sliderChange(
-                                                  (sstate + 5000).toDouble());
-                                        }
-                                      },
-                                      icon: Icon(
-                                        Icons.add,
-                                        size: widthSize * 0.15,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                  ],
-                                ),
-                                TextMiddle(
-                                  msg:
-                                      "입찰가격 : ${NumberFormat('#,###').format(state.pricenow)} + ${NumberFormat('#,###').format(sstate)} = ${NumberFormat('#,###').format(state.pricenow + sstate)}",
-                                  clr: Theme.of(context).colorScheme.onBackground,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                SizedBox(
-                                  width: widthSize * 1.9,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Spacer(),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.white),
-                                          onPressed: () {
-                                            doBid(context, state.auctionid,
-                                                state.pricenow + sstate);
-                                          },
-                                          child: const TextMiddle(
-                                            msg: "입찰하기",
-                                            clr: Colors.red,
-                                          )),
-                                      const Spacer(),
-                                      ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.white),
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: const TextMiddle(
-                                            msg: "돌아가기",
-                                            clr: Colors.blue,
-                                          )),
-                                      const Spacer(),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            );
-                          }),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withAlpha(180),
+                                  minimumSize: Size(widthSize*1.9, 50)),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: TextMiddle(msg: "확인",clr: Theme.of(context).colorScheme.inverseSurface,)),
+                          const Spacer(),
                           const Spacer(),
                         ],
                       ),
@@ -316,54 +223,6 @@ class AuctionPage extends StatelessWidget {
   } //end of widgetBuild
 
   //function
-
-  doBid(BuildContext ctx, int aucID, int newPrice) async {
-    int rsStatus = await AuctionsRepository().bidAuction(aucID, newPrice);
-    if (rsStatus == 200) {
-      bidAlert(ctx, true);
-    } else {
-      bidAlert(ctx, false);
-    }
-  }
-
-  bidAlert(BuildContext ctx, bool rs) {
-    showDialog(
-        context: ctx,
-        barrierDismissible: false,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: TextBig(
-              msg: rs ? "입찰에 성공하였습니다." : "입찰에 실패하였습니다. 포인트를 확인해 주세요.",
-              clr: Colors.white,
-            ),
-            actions: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(ctx).pop();
-                },
-                child: const TextMiddle(
-                  msg: "확 인",
-                ),
-              )
-            ],
-          );
-        });
-  }
-
-  cantAlert(BuildContext ctx, bool tf) {
-    ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-        backgroundColor: Colors.blueGrey,
-        content: tf
-            ? TextBig(
-                msg: "최소 입찰금액은 기존 입찰금 +10,000원 입니다.",
-                clr: Theme.of(ctx).colorScheme.onBackground,
-              )
-            : TextBig(
-                msg: "입찰금액은 기존 입찰금 +100,000원 을 넘을 수 없습니다.",
-                clr: Theme.of(ctx).colorScheme.onBackground,
-              )));
-  }
 
   _loadImg(BuildContext ctx, String imgname) {
     ctx.read<AuctoinImgController>().loadImg(imgname);

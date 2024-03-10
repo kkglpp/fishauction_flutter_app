@@ -1,8 +1,11 @@
+import 'package:fishauction_app/Controller/auctionImg_Controller.dart';
+import 'package:fishauction_app/Controller/auctionPage_Controller.dart';
 import 'package:fishauction_app/Controller/myauctionList_RadioController.dart';
 import 'package:fishauction_app/Custom/auctionCard.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Model/doneAuction_model.dart';
+import 'package:fishauction_app/View/auctionDonePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -77,15 +80,32 @@ class MyAuctionList extends StatelessWidget {
                       return
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: AuctionCard(
-                          biddedid: state.$2[state.$2.length-(1+index)].biddedid,
-                          auctionid: state.$2[state.$2.length-(1+index)].auctionid,
-                          buyerid: state.$2[state.$2.length-(1+index)].buyerid,
-                          biddedprice: state.$2[state.$2.length-(1+index)].biddedprice,
-                          biddeddate: state.$2[state.$2.length-(1+index)].biddeddate,
-                          address: state.$2[state.$2.length-(1+index)].address,
-                          deliverydate: state.$2[state.$2.length-(1+index)].deliverydate,
-                          ),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) {
+                                return MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider(create: (context) => AuctionPageController(),),
+                                    BlocProvider(create: (context) => AuctoinImgController(),),
+                                  ],
+                                  child: AuctionDonePage(
+                                    auctionid: int.parse(state.$2[state.$2.length-(1+index)].auctionid)
+                                    )
+                                    );
+                              },
+                              ));
+                          },
+                          child: AuctionCard(
+                            biddedid: state.$2[state.$2.length-(1+index)].biddedid,
+                            auctionid: state.$2[state.$2.length-(1+index)].auctionid,
+                            buyerid: state.$2[state.$2.length-(1+index)].buyerid,
+                            biddedprice: state.$2[state.$2.length-(1+index)].biddedprice,
+                            biddeddate: state.$2[state.$2.length-(1+index)].biddeddate,
+                            address: state.$2[state.$2.length-(1+index)].address,
+                            deliverydate: state.$2[state.$2.length-(1+index)].deliverydate,
+                            ),
+                        ),
                       );
                     },
                     )
