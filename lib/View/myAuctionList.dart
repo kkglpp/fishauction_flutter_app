@@ -71,7 +71,7 @@ class MyAuctionList extends StatelessWidget {
               GridView
                */
               state.$1 != "success"
-              ?TextTitle(msg:state.$1)
+              ?TextTitle(msg:state.$1,clr: Theme.of(context).colorScheme.onBackground,)
               :
               Expanded(
                   child: ListView.builder(
