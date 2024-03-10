@@ -16,8 +16,6 @@ class DoneAuctionModel with _$DoneAuctionModel {
   required String address,
   required String? deliverydate,
   required String? paymentdate,
-    
-
   }) =_DoneAuctionModel;  
 
   factory DoneAuctionModel.fromJson(Map<String, dynamic> json) => _$DoneAuctionModelFromJson(json);

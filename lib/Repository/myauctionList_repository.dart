@@ -9,11 +9,12 @@ class MyAuctionListRepositroy {
   List<DoneAuctionModel> myAucList = [];
 
   Future<String> getMyAuctionList(String type) async {
+
+    // 임시로 저장할 LIst
+    myAucList = []; 
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    myAucList = [];
     var accessToken = prefs.get('accessToken');
-
     var headers = {
       'accept': 'application/json',
       'Authorization': 'Bearer $accessToken'

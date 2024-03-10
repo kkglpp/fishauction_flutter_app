@@ -65,11 +65,9 @@ class MyAuctionList extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-
               /* 화면구성2 : 경매 목록 가져오기. 
               GridView
                */
-
               state.$1 != "success"
               ?TextTitle(msg:state.$1)
               :
