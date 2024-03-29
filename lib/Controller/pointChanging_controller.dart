@@ -4,7 +4,7 @@ class PointChagingController extends Cubit <int>{
   PointChagingController(super.initialState);
 
   changePoint(int newPoint){
-    emit(newPoint); 
+    emit(newPoint);
   }
 
 
