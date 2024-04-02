@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fishauction_app/Datahandler/firebase_datasource_impl.dart';
+import 'package:fishauction_app/Model_datahandler/firebase_datasource_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 

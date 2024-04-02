@@ -6,8 +6,8 @@ import 'package:fishauction_app/Custom/insertTextBox.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Datahandler/firebase_datasource_impl.dart';
-import 'package:fishauction_app/Repository/auctionsRepository_impl.dart';
+import 'package:fishauction_app/Model_datahandler/firebase_datasource_impl.dart';
+import 'package:fishauction_app/Model_Repository/auctionsRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -36,191 +36,196 @@ class OpenAuctionPage extends StatelessWidget {
           ],
         ).value ??
         0;
-return Scaffold(
-  appBar: AppBar(),
-  body: Center(
-    child: Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView( // SingleChildScrollView 추가
-            child: Column(
-              children: [
-                TextTitle(
-                  msg: "Open your Auction",
-                  clr: Theme.of(context).colorScheme.onBackground,
-                ),
-                SizedBox(
-                  height: 30,
-                  width: widthSize,
-                  child: const Divider(),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                BlocBuilder<OpenAuctionImgController, XFile?>(
-                    builder: (context, state) {
-                  if (state == null) {
-                    selectImage(context);
-                  } else {
-                    imgFile = state;
-                  }
-                  return state == null
-                      ? Image.asset(
-                          "images/fishing_default.jpeg",
-                          width: widthSize * 0.8,
-                          fit: BoxFit.fitWidth,
-                        )
-                      : Image.file(
-                          File(state.path),
-                          width: widthSize * 0.8,
-                          fit: BoxFit.fitWidth,
-                        );
-                }),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: InsertTextBox(
-                    tec: titleTec,
-                    content: "경매 제목",
-                    paddingEdge: 5,
-                    widthSize: widthSize,
-                  ),
-                ),
-                InsertTextBox(
-                    tec: fishTec,
-                    content: "어종",
-                    paddingEdge: 5,
-                    widthSize: widthSize),
-                InsertTextBox(
-                    tec: contentTec,
-                    content: "판매자 한마디",
-                    paddingEdge: 5,
-                    maxLine: 3,
-                    widthSize: widthSize),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: SizedBox(
-                    child: Container(
-                      width: 400,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                              width: widthSize * 0.3,
-                              child: TextBig(
-                                msg: "경매 시작가 : ",
-                                clr: Theme.of(context).colorScheme.onBackground,
-                                ta: 0,
-                              )),
-                          BlocBuilder<OpenAuctionPriceController, int>(
-                              builder: (context, state) {
-                            startPrice = state;
-                            return SizedBox(
-                              width: widthSize * 0.3,
-                              child: TextBig(
-                                msg: "${NumberFormat('#,###').format(state)} 원",
-                                clr: Theme.of(context).colorScheme.onBackground,
-                                ta: 0,
-                              ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                // SingleChildScrollView 추가
+                child: Column(
+                  children: [
+                    TextTitle(
+                      msg: "Open your Auction",
+                      clr: Theme.of(context).colorScheme.onBackground,
+                    ),
+                    SizedBox(
+                      height: 30,
+                      width: widthSize,
+                      child: const Divider(),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    BlocBuilder<OpenAuctionImgController, XFile?>(
+                        builder: (context, state) {
+                      if (state == null) {
+                        selectImage(context);
+                      } else {
+                        imgFile = state;
+                      }
+                      return state == null
+                          ? Image.asset(
+                              "images/fishing_default.jpeg",
+                              width: widthSize * 0.8,
+                              fit: BoxFit.fitWidth,
+                            )
+                          : Image.file(
+                              File(state.path),
+                              width: widthSize * 0.8,
+                              fit: BoxFit.fitWidth,
                             );
-                          }),
-                          SizedBox(
-                            width: widthSize * 0.05,
-                          ),
-                          SizedBox(
-                            width: widthSize * 0.15,
-                            child: IconButton(
-                              onPressed: () {
-                                startPrice -= 5000;
-                                if (startPrice < 10000) {
-                                  startPrice += 5000;
-                                  errorAlert(context);
-                                } else {
-                                  context
-                                      .read<OpenAuctionPriceController>()
-                                      .minusStartPrice(context);
-                                }
-                              },
-                              icon: Icon(
-                                Icons.remove,
-                                size: widthSize * 0.1,
-                                color: Colors.blue,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: widthSize * 0.05,
-                          ),
-                          SizedBox(
-                            width: widthSize * 0.15,
-                            child: IconButton(
-                              onPressed: () {
-                                context
-                                    .read<OpenAuctionPriceController>()
-                                    .plusStartPrice();
-                              },
-                              icon: Icon(
-                                Icons.add,
-                                size: widthSize * 0.1,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ],
+                    }),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: InsertTextBox(
+                        tec: titleTec,
+                        content: "경매 제목",
+                        paddingEdge: 5,
+                        widthSize: widthSize,
                       ),
                     ),
-                  ),
+                    InsertTextBox(
+                        tec: fishTec,
+                        content: "어종",
+                        paddingEdge: 5,
+                        widthSize: widthSize),
+                    InsertTextBox(
+                        tec: contentTec,
+                        content: "판매자 한마디",
+                        paddingEdge: 5,
+                        maxLine: 3,
+                        widthSize: widthSize),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: SizedBox(
+                        child: Container(
+                          width: 400,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  width: widthSize * 0.3,
+                                  child: TextBig(
+                                    msg: "경매 시작가 : ",
+                                    clr: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    ta: 0,
+                                  )),
+                              BlocBuilder<OpenAuctionPriceController, int>(
+                                  builder: (context, state) {
+                                startPrice = state;
+                                return SizedBox(
+                                  width: widthSize * 0.3,
+                                  child: TextBig(
+                                    msg:
+                                        "${NumberFormat('#,###').format(state)} 원",
+                                    clr: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    ta: 0,
+                                  ),
+                                );
+                              }),
+                              SizedBox(
+                                width: widthSize * 0.05,
+                              ),
+                              SizedBox(
+                                width: widthSize * 0.15,
+                                child: IconButton(
+                                  onPressed: () {
+                                    startPrice -= 5000;
+                                    if (startPrice < 10000) {
+                                      startPrice += 5000;
+                                      errorAlert(context);
+                                    } else {
+                                      context
+                                          .read<OpenAuctionPriceController>()
+                                          .minusStartPrice(context);
+                                    }
+                                  },
+                                  icon: Icon(
+                                    Icons.remove,
+                                    size: widthSize * 0.1,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: widthSize * 0.05,
+                              ),
+                              SizedBox(
+                                width: widthSize * 0.15,
+                                child: IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<OpenAuctionPriceController>()
+                                        .plusStartPrice();
+                                  },
+                                  icon: Icon(
+                                    Icons.add,
+                                    size: widthSize * 0.1,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ],
+              ),
             ),
-          ),
-        ),
-        SizedBox(
-          width: widthSize,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(widthSize * 0.4, 40),
-                  backgroundColor: Colors.brown[400]
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: TextBig(
-                  msg: "취 소",
-                  clr: Theme.of(context).colorScheme.onBackground,
-                ),
+            SizedBox(
+              width: widthSize,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size(widthSize * 0.4, 40),
+                        backgroundColor: Colors.brown[400]),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: TextBig(
+                      msg: "취 소",
+                      clr: Theme.of(context).colorScheme.onBackground,
+                    ),
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: Size(widthSize * 0.4, 40),
+                        backgroundColor: Colors.blue[400]),
+                    onPressed: () {
+                      openRequest(context, startPrice, titleTec.text,
+                          fishTec.text, contentTec.text, imgFile!.path);
+                    },
+                    child: TextBig(
+                      msg: "확 인",
+                      clr: Theme.of(context).colorScheme.onBackground,
+                    ),
+                  ),
+                  const Spacer(),
+                ],
               ),
-              const Spacer(),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(widthSize * 0.4, 40),
-                  backgroundColor: Colors.blue[400]
-                ),
-                onPressed: () {
-                  openRequest(context, startPrice, titleTec.text, fishTec.text, contentTec.text, imgFile!.path);
-                },
-                child: TextBig(
-                  msg: "확 인",
-                  clr: Theme.of(context).colorScheme.onBackground,
-                ),
-              ),
-              const Spacer(),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 30,
-        ),
-      ],
-    ),
-  ),
-);
+      ),
+    );
   } // end of widget
 
   // 갤러리 들어가는 함수
@@ -233,32 +238,33 @@ return Scaffold(
   openRequest(BuildContext context, int startprice, String title, String fish,
       String content, String filepath) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String pic = '${prefs.get('uid')}${DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now())}.jpg';
+    String pic =
+        '${prefs.get('uid')}${DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now())}.jpg';
 
-    bool uploadeResult = await FirebaseDataSourceImpl().uploadPic(filepath, pic);
-    try{
-    if (uploadeResult) {
-      Map<String, String>? postdata = {
-        'pricestart': startprice.toString(),
-        'title': title,
-        'content': content,
-        'fish': fish,
-        'pic': pic
-      };
+    bool uploadeResult =
+        await FirebaseDataSourceImpl().uploadPic(filepath, pic);
+    try {
+      if (uploadeResult) {
+        Map<String, String>? postdata = {
+          'pricestart': startprice.toString(),
+          'title': title,
+          'content': content,
+          'fish': fish,
+          'pic': pic
+        };
 
-      bool result = await AuctionsRepositoryImpl().openAuction(postdata);
+        bool result = await AuctionsRepositoryImpl().openAuction(postdata);
 
-      if (result) {
-        successAlert(context);
+        if (result) {
+          successAlert(context);
+        } else {
+          failAlert(context);
+        }
       } else {
         failAlert(context);
       }
-    } else {
-      failAlert(context);
-    }
-    }
-    catch (e){
-        Logger().e("에러: $e");
+    } catch (e) {
+      Logger().e("에러: $e");
     }
   }
 

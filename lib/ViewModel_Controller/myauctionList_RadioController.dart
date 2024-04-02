@@ -1,6 +1,6 @@
-import 'package:fishauction_app/Model/auction_model.dart';
-import 'package:fishauction_app/Model/doneAuction_model.dart';
-import 'package:fishauction_app/Repository/biddedRepository_impl.dart';
+
+import 'package:fishauction_app/Model_Repository/biddedRepository_impl.dart';
+import 'package:fishauction_app/Model_model/doneAuction_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyAuctionListRadioController

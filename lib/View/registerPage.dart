@@ -9,11 +9,9 @@ class RegisterPage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("회원가입 페이지")
-          ],
+          children: [Text("회원가입 페이지")],
         ),
       ),
-    );;
+    );
   }
 }

@@ -3,7 +3,7 @@ import 'package:fishauction_app/ViewModel_Controller/pointCharger_controller.dar
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Repository/balanceRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/balanceRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -370,7 +370,7 @@ class PointRefundPage extends StatelessWidget {
 //function
   doRefund(BuildContext ctx, int amount) async {
     try {
-      await BalanceRepositoryImpl ().refundMyPoints(amount);
+      await BalanceRepositoryImpl().refundMyPoints(amount);
     } catch (e) {
       showFailedDialog(ctx);
     }

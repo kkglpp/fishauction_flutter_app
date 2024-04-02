@@ -5,7 +5,7 @@ import 'package:fishauction_app/ViewModel_Controller/auctionWholeList_Controller
 import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
 import 'package:fishauction_app/Custom/auctionGrid.dart';
-import 'package:fishauction_app/Model/auction_model.dart';
+import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:fishauction_app/View/auctionPage.dart';
 import 'package:fishauction_app/View/openAuctionPage.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class AuctionWholeList extends StatelessWidget {
               builder: ((context, state) {
                 if (state.isEmpty) {
                   loadData(context);
-                  print(state.length);
+                  // print(state.length);
                 }
                 return state.isEmpty
                     ? Image.asset("images/fishing_default.jpeg")
@@ -102,12 +102,14 @@ class AuctionWholeList extends StatelessWidget {
       ),
     );
   }
-//function
 
+//function
+  // 경매 목록을 갱신하는 함수.
   loadData(BuildContext context) async {
     await context.read<AuctionWholeListController>().loadAuctionList();
   }
 
+  //새로운 경매를 시작하는 페이지로 이동하는 함수.
   openAuction(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(
       builder: (context) {
@@ -120,4 +122,4 @@ class AuctionWholeList extends StatelessWidget {
       },
     )); //end of Navigator
   }
-}//end of class
+} //end of class

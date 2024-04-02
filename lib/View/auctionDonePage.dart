@@ -2,23 +2,20 @@ import 'dart:io';
 
 import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionPage_SliderController.dart';
 import 'package:fishauction_app/Custom/textSmall.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model/auction_model.dart';
-import 'package:fishauction_app/Repository/auctions_repository.dart';
+import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:intl/intl.dart';
 
 class AuctionDonePage extends StatelessWidget {
-  int auctionid;
+  final int auctionid;
 
-  AuctionDonePage({
+  const AuctionDonePage({
     Key? key,
     required this.auctionid,
   }) : super(key: key);
@@ -90,7 +87,9 @@ class AuctionDonePage extends StatelessWidget {
                             children: [
                               TextSmall(
                                   msg: state.insertdate,
-                                  clr: Theme.of(context).colorScheme.onBackground),
+                                  clr: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -124,7 +123,8 @@ class AuctionDonePage extends StatelessWidget {
                                       sstate,
                                       width: widthSize,
                                       fit: BoxFit.fitWidth,
-                                      errorBuilder: (context, error, stackTrace) {
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
                                         return Image.asset(
                                           'images/fishing_default.jpeg',
                                           width: widthSize,
@@ -144,7 +144,8 @@ class AuctionDonePage extends StatelessWidget {
                             width: widthSize * 1.9,
                             height: widthSize * 0.6,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
                               color: Colors.blueGrey,
                             ),
                             child: Padding(
@@ -205,11 +206,16 @@ class AuctionDonePage extends StatelessWidget {
                                       .colorScheme
                                       .primary
                                       .withAlpha(180),
-                                  minimumSize: Size(widthSize*1.9, 50)),
+                                  minimumSize: Size(widthSize * 1.9, 50)),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
-                              child: TextMiddle(msg: "확인",clr: Theme.of(context).colorScheme.inverseSurface,)),
+                              child: TextMiddle(
+                                msg: "확인",
+                                clr: Theme.of(context)
+                                    .colorScheme
+                                    .inverseSurface,
+                              )),
                           const Spacer(),
                           const Spacer(),
                         ],

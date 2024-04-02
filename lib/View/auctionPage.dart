@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:fishauction_app/Repository/auctionsRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/auctionsRepository_impl.dart';
 import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auctionPage_SliderController.dart';
 import 'package:fishauction_app/Custom/textSmall.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model/auction_model.dart';
+import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fishauction_app/Custom/textBig.dart';
@@ -23,7 +23,6 @@ class AuctionPage extends StatelessWidget {
   AuctionPage({
     Key? key,
     required this.auctionid,
-
     required this.pic,
   }) : super(key: key);
 
@@ -94,7 +93,9 @@ class AuctionPage extends StatelessWidget {
                             children: [
                               TextSmall(
                                   msg: state.insertdate,
-                                  clr: Theme.of(context).colorScheme.onBackground),
+                                  clr: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
                               const SizedBox(
                                 width: 20,
                               ),
@@ -128,7 +129,8 @@ class AuctionPage extends StatelessWidget {
                                       state,
                                       width: widthSize,
                                       fit: BoxFit.fitWidth,
-                                      errorBuilder: (context, error, stackTrace) {
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
                                         return Image.asset(
                                           'images/fishing_default.jpeg',
                                           width: widthSize,
@@ -148,7 +150,8 @@ class AuctionPage extends StatelessWidget {
                             width: widthSize * 1.9,
                             height: widthSize * 0.6,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
                               color: Colors.blueGrey,
                             ),
                             child: Padding(
@@ -217,7 +220,8 @@ class AuctionPage extends StatelessWidget {
                                           cantAlert(context, true);
                                         } else {
                                           context
-                                              .read<AuctionPageSliderController>()
+                                              .read<
+                                                  AuctionPageSliderController>()
                                               .sliderChange(
                                                   (sstate - 5000).toDouble());
                                         }
@@ -237,7 +241,8 @@ class AuctionPage extends StatelessWidget {
                                           max: 100000,
                                           onChanged: (value) {
                                             context
-                                                .read<AuctionPageSliderController>()
+                                                .read<
+                                                    AuctionPageSliderController>()
                                                 .sliderChange(value);
                                           }),
                                     ),
@@ -248,7 +253,8 @@ class AuctionPage extends StatelessWidget {
                                           cantAlert(context, false);
                                         } else {
                                           context
-                                              .read<AuctionPageSliderController>()
+                                              .read<
+                                                  AuctionPageSliderController>()
                                               .sliderChange(
                                                   (sstate + 5000).toDouble());
                                         }
@@ -264,7 +270,9 @@ class AuctionPage extends StatelessWidget {
                                 TextMiddle(
                                   msg:
                                       "입찰가격 : ${NumberFormat('#,###').format(state.pricenow)} + ${NumberFormat('#,###').format(sstate)} = ${NumberFormat('#,###').format(state.pricenow + sstate)}",
-                                  clr: Theme.of(context).colorScheme.onBackground,
+                                  clr: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
                                 ),
                                 const SizedBox(
                                   height: 20,

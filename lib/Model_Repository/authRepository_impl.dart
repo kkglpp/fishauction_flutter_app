@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:fishauction_app/Datahandler/datahandler_impl.dart';
-import 'package:fishauction_app/Repository/authRepository.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Model_Repository/authRepository.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<bool> doLogin(String uid, String upw) async {
-    DataSourceImpl datasource = DataSourceImpl();
+    DatahandlerImpl datasource = DatahandlerImpl();
     var headers = {
       'accept': 'application/json',
       'Content-Type': 'application/json',

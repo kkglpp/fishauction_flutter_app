@@ -3,7 +3,7 @@ import 'package:fishauction_app/ViewModel_Controller/pointCharger_controller.dar
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Repository/balanceRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/balanceRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -176,12 +176,11 @@ class PointChargingPage extends StatelessWidget {
                           backgroundColor: Colors.blue.withAlpha(150),
                           foregroundColor: Colors.white),
                       onPressed: () {
-                        if(addPoint>10000){
-                        addPoint = addPoint - 10000;
-                        subPoints(context, beforePoint + addPoint);
-                        }else{
+                        if (addPoint > 10000) {
+                          addPoint = addPoint - 10000;
+                          subPoints(context, beforePoint + addPoint);
+                        } else {
                           showWarning(context);
-
                         }
                       },
                       child: Text(
@@ -207,62 +206,68 @@ class PointChargingPage extends StatelessWidget {
             Spacer(),
             SizedBox(
               width: widthSize,
-              child: 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Colors.white
-                ),
-                onPressed:(){
-                  print("before : $beforePoint");
-                  print("add : $addPoint");
-                  doCharge(context, addPoint );
-              
-                }, 
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: widthSize*0.2,
-                      child: Icon(Icons.credit_card_sharp, size: 30,)),
-                    SizedBox(
-                      width: widthSize*0.3,
-                      child: TextMiddle(msg:"결재하기",clr: Colors.white,ta: 1,))
-              
-                  ],
-                )),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Colors.white),
+                  onPressed: () {
+                    print("before : $beforePoint");
+                    print("add : $addPoint");
+                    doCharge(context, addPoint);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          width: widthSize * 0.2,
+                          child: Icon(
+                            Icons.credit_card_sharp,
+                            size: 30,
+                          )),
+                      SizedBox(
+                          width: widthSize * 0.3,
+                          child: TextMiddle(
+                            msg: "결재하기",
+                            clr: Colors.white,
+                            ta: 1,
+                          ))
+                    ],
+                  )),
             ),
             SizedBox(
               height: 10,
             ),
             SizedBox(
               width: widthSize,
-              child: 
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  foregroundColor: Colors.white
-                ),
-                onPressed:(){
-                  Navigator.of(context).pop();
-              
-                }, 
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: widthSize*0.2,
-                      child: Icon(Icons.arrow_back_sharp, size: 30,)),
-                    SizedBox(
-                      width: widthSize*0.3,
-                      child: TextMiddle(msg:"돌아가기",clr: Colors.white,ta: 1,))
-              
-                  ],
-                )),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                          width: widthSize * 0.2,
+                          child: Icon(
+                            Icons.arrow_back_sharp,
+                            size: 30,
+                          )),
+                      SizedBox(
+                          width: widthSize * 0.3,
+                          child: TextMiddle(
+                            msg: "돌아가기",
+                            clr: Colors.white,
+                            ta: 1,
+                          ))
+                    ],
+                  )),
             ),
-SizedBox(
-  height: 100,
-),
+            SizedBox(
+              height: 100,
+            ),
           ],
         ),
       ),
@@ -280,7 +285,6 @@ SizedBox(
   }
 
   subPoints(BuildContext ctx, int amount) async {
-    
     await ctx.read<PointChargerController>().subPoint();
     await ctx.read<PointChagingController>().changePoint(amount);
   }
@@ -289,74 +293,67 @@ SizedBox(
     await ctx.read<PointChagingController>().changePoint(amount);
   }
 
-showWarning(BuildContext ctx)  {
-  showDialog(
-    context: ctx,
-    builder: (BuildContext ctx) {
-      return AlertDialog(
-        content: Text("충전 금액을 더 이상 낮출 수 없습니다."),
-        actions: [
-          ElevatedButton(
-            onPressed: (){
-              Navigator.of(ctx).pop();
-            }, child: Text("확인"))
-        ],
-
-      );
-    }
-    );
-}//showWarning
-
-showSuccessDialog(BuildContext ctx){
+  showWarning(BuildContext ctx) {
     showDialog(
-    context: ctx,
-    builder: (BuildContext ctx) {
-      return AlertDialog(
-        content: Text("충전 완료"),
-        actions: [
-          ElevatedButton(
-            onPressed: (){
-              Navigator.of(ctx).pop();
-              Navigator.of(ctx).pop();
-            }, child: Text("확인"))
-        ],
+        context: ctx,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            content: Text("충전 금액을 더 이상 낮출 수 없습니다."),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text("확인"))
+            ],
+          );
+        });
+  } //showWarning
 
-      );
-    }
-    );
-} // end of successDialog
-showFailedDialog(BuildContext ctx){
+  showSuccessDialog(BuildContext ctx) {
     showDialog(
-    context: ctx,
-    builder: (BuildContext ctx) {
-      return AlertDialog(
-        content: Text("충전 실패"),
-        actions: [
-          ElevatedButton(
-            onPressed: (){
-              Navigator.of(ctx).pop();
-              Navigator.of(ctx).pop();
-            }, child: Text("확인"))
-        ],
+        context: ctx,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            content: Text("충전 완료"),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text("확인"))
+            ],
+          );
+        });
+  } // end of successDialog
 
-      );
-    }
-    );
-
-
-}
-
-//function
-doCharge(BuildContext ctx, int amount)async{
-  try{
-  await BalanceRepositoryImpl ().chargeMyPoints(amount);
-  }catch (e){
-    showFailedDialog(ctx);
+  showFailedDialog(BuildContext ctx) {
+    showDialog(
+        context: ctx,
+        builder: (BuildContext ctx) {
+          return AlertDialog(
+            content: Text("충전 실패"),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text("확인"))
+            ],
+          );
+        });
   }
 
-  showSuccessDialog(ctx);
+//function
+  doCharge(BuildContext ctx, int amount) async {
+    try {
+      await BalanceRepositoryImpl().chargeMyPoints(amount);
+    } catch (e) {
+      showFailedDialog(ctx);
+    }
 
-  
-}
-
+    showSuccessDialog(ctx);
+  }
 }//end of class

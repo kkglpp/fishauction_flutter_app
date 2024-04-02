@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 // import 'package:firebase_storage/firebase_storage.dart';
-import 'package:fishauction_app/Datahandler/datahandler.dart';
-import 'package:fishauction_app/Datahandler/datahandler_impl.dart';
-import 'package:fishauction_app/Model/auction_model.dart';
-import 'package:fishauction_app/Repository/auctionsRepository.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Model_Repository/auctionsRepository.dart';
+import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,7 +18,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'accept': 'application/json',
     };
 
-    var response = await DataSourceImpl().get('auctions', headers);
+    var response = await DatahandlerImpl().get('auctions', headers);
     var rbody = json.decode(utf8.decode(response.bodyBytes));
 
     /* 결과로 받은 것은 List<dynamic> 형태이다. 
@@ -35,7 +35,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
     var headers = {
       'accept': 'application/json',
     };
-    var response = await DataSourceImpl().get('auctions/$auctionid', headers);
+    var response = await DatahandlerImpl().get('auctions/$auctionid', headers);
     //response 가 에러일 경우에는 null 리턴
     if (response == ResponseResult.error) {
       return null;
@@ -58,7 +58,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'accept': 'application/json',
       'Authorization': 'Bearer $accessToken'
     };
-    var response = await DataSourceImpl()
+    var response = await DatahandlerImpl()
         .patch('auctions/$aucID/$newPrice', null, headers: headers);
     return response.statusCode;
   }
@@ -74,7 +74,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'Authorization': 'Bearer $accessToken'
     };
     var response =
-        await DataSourceImpl().post("auctions/", postdata, headers: headers);
+        await DatahandlerImpl().post("auctions/", postdata, headers: headers);
     if (response != ResponseResult.error) {
       return true;
     } else {

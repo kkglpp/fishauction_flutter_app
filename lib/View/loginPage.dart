@@ -1,19 +1,18 @@
 import 'package:fishauction_app/Custom/insertTextBox.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Repository/authRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/authRepository_impl.dart';
 import 'package:fishauction_app/View/tabbarViewPage.dart';
+import 'package:fishauction_app/ViewModel_Controller/loginPage_Controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
   @override
   Widget build(BuildContext context) {
-    
     TextEditingController idTec = TextEditingController();
     TextEditingController pwTec = TextEditingController();
     return Scaffold(
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -29,22 +28,24 @@ class LoginPage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    var loginrs =
-                        await AuthRepositoryImpl ().doLogin(idTec.text, pwTec.text);
+                    var loginrs = await LoginPageController()
+                        .doLogin(idTec.text, pwTec.text);
                     idTec.text = "";
                     pwTec.text = "";
                     loginAlert(context, loginrs);
                   },
-                  style: ElevatedButton.styleFrom(fixedSize: Size(170, 50)),
-                  child: TextMiddle(msg: "로그인", clr: Colors.red),
+                  style:
+                      ElevatedButton.styleFrom(fixedSize: const Size(170, 50)),
+                  child: const TextMiddle(msg: "로그인", clr: Colors.red),
                 ),
                 const SizedBox(
                   width: 15,
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(fixedSize: Size(170, 50)),
-                  child: TextMiddle(msg: "회원가입", clr: Colors.blue),
+                  style:
+                      ElevatedButton.styleFrom(fixedSize: const Size(170, 50)),
+                  child: const TextMiddle(msg: "회원가입", clr: Colors.blue),
                 ),
               ],
             ),
@@ -89,5 +90,5 @@ class LoginPage extends StatelessWidget {
             ],
           );
         });
-  }//end of loginAlert
+  } //end of loginAlert
 } //end of loginPage

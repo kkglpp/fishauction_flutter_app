@@ -4,7 +4,7 @@ import 'package:fishauction_app/ViewModel_Controller/myauctionList_RadioControll
 import 'package:fishauction_app/Custom/auctionCard.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model/doneAuction_model.dart';
+import 'package:fishauction_app/Model_model/doneAuction_model.dart';
 import 'package:fishauction_app/View/auctionDonePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,13 +14,11 @@ class MyAuctionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var check ;
-
+    var check;
 
     return Scaffold(
-      body: BlocBuilder<MyAuctionListRadioController, (String,List<DoneAuctionModel>)>(
-          builder: (context, state) {
-
+      body: BlocBuilder<MyAuctionListRadioController,
+          (String, List<DoneAuctionModel>)>(builder: (context, state) {
         return Center(
           child: Column(
             children: [
@@ -55,7 +53,7 @@ class MyAuctionList extends StatelessWidget {
                       value: 2,
                       groupValue: check,
                       onChanged: (value) {
-                        check =2;
+                        check = 2;
                         context
                             .read<MyAuctionListRadioController>()
                             .checkbuying("buying");
@@ -71,45 +69,64 @@ class MyAuctionList extends StatelessWidget {
               GridView
                */
               state.$1 != "success"
-              ?TextTitle(msg:state.$1,clr: Theme.of(context).colorScheme.onBackground,)
-              :
-              Expanded(
-                  child: ListView.builder(
-                    itemCount: state.$2.length,
-                    itemBuilder: (context, index) {
-                      return
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) {
-                                return MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider(create: (context) => AuctionPageController(),),
-                                    BlocProvider(create: (context) => AuctoinImgController(),),
-                                  ],
-                                  child: AuctionDonePage(
-                                    auctionid: int.parse(state.$2[state.$2.length-(1+index)].auctionid)
-                                    )
-                                    );
-                              },
-                              ));
-                          },
-                          child: AuctionCard(
-                            biddedid: state.$2[state.$2.length-(1+index)].biddedid,
-                            auctionid: state.$2[state.$2.length-(1+index)].auctionid,
-                            buyerid: state.$2[state.$2.length-(1+index)].buyerid,
-                            biddedprice: state.$2[state.$2.length-(1+index)].biddedprice,
-                            biddeddate: state.$2[state.$2.length-(1+index)].biddeddate,
-                            address: state.$2[state.$2.length-(1+index)].address,
-                            deliverydate: state.$2[state.$2.length-(1+index)].deliverydate,
-                            ),
-                        ),
-                      );
-                    },
+                  ? TextTitle(
+                      msg: state.$1,
+                      clr: Theme.of(context).colorScheme.onBackground,
                     )
-              ),
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: state.$2.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return MultiBlocProvider(
+                                        providers: [
+                                          BlocProvider(
+                                            create: (context) =>
+                                                AuctionPageController(),
+                                          ),
+                                          BlocProvider(
+                                            create: (context) =>
+                                                AuctoinImgController(),
+                                          ),
+                                        ],
+                                        child: AuctionDonePage(
+                                            auctionid: int.parse(state
+                                                .$2[state.$2.length -
+                                                    (1 + index)]
+                                                .auctionid)));
+                                  },
+                                ));
+                              },
+                              child: AuctionCard(
+                                biddedid: state
+                                    .$2[state.$2.length - (1 + index)].biddedid,
+                                auctionid: state
+                                    .$2[state.$2.length - (1 + index)]
+                                    .auctionid,
+                                buyerid: state
+                                    .$2[state.$2.length - (1 + index)].buyerid,
+                                biddedprice: state
+                                    .$2[state.$2.length - (1 + index)]
+                                    .biddedprice,
+                                biddeddate: state
+                                    .$2[state.$2.length - (1 + index)]
+                                    .biddeddate,
+                                address: state
+                                    .$2[state.$2.length - (1 + index)].address,
+                                deliverydate: state
+                                    .$2[state.$2.length - (1 + index)]
+                                    .deliverydate,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
             ],
           ),
         );

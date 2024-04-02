@@ -166,10 +166,7 @@ class MyinfoPage extends StatelessWidget {
                       ], child: const PointRefundPage());
                     } //end of builder
                         );
-                  })).then((value) => loadData(context));                  
-
-
-
+                  })).then((value) => loadData(context));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
