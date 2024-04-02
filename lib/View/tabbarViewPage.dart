@@ -1,6 +1,6 @@
-import 'package:fishauction_app/Controller/auctionWholeList_Controller.dart';
-import 'package:fishauction_app/Controller/myInfoPage_controller.dart';
-import 'package:fishauction_app/Controller/myauctionList_RadioController.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionWholeList_Controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/myInfoPage_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/myauctionList_RadioController.dart';
 import 'package:fishauction_app/View/auctionWholeList.dart';
 import 'package:fishauction_app/View/myAuctionList.dart';
 import 'package:fishauction_app/View/myInfoPage.dart';

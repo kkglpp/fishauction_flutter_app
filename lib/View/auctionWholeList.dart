@@ -1,9 +1,9 @@
-import 'package:fishauction_app/Controller/auctionImg_Controller.dart';
-import 'package:fishauction_app/Controller/auctionPage_Controller.dart';
-import 'package:fishauction_app/Controller/auctionPage_SliderController.dart';
-import 'package:fishauction_app/Controller/auctionWholeList_Controller.dart';
-import 'package:fishauction_app/Controller/openAuctionImg_controller.dart';
-import 'package:fishauction_app/Controller/openAuctionPrice_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionPage_SliderController.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionWholeList_Controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
 import 'package:fishauction_app/Custom/auctionGrid.dart';
 import 'package:fishauction_app/Model/auction_model.dart';
 import 'package:fishauction_app/View/auctionPage.dart';

@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:fishauction_app/Controller/openAuctionImg_controller.dart';
-import 'package:fishauction_app/Controller/openAuctionPrice_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
 import 'package:fishauction_app/Custom/insertTextBox.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/DataSource/firebase_datasource_impl.dart';
+import 'package:fishauction_app/Datahandler/firebase_datasource_impl.dart';
 import 'package:fishauction_app/Repository/auctions_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

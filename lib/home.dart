@@ -81,7 +81,7 @@ move2Login(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context){
-      return loginPage();
+      return const LoginPage();
     })
   );
 } //end of Move2Login

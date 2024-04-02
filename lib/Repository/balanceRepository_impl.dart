@@ -1,9 +1,11 @@
 import 'dart:convert';
 
-import 'package:fishauction_app/DataSource/datasource_impl.dart';
+import 'package:fishauction_app/Datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Repository/balanceRepository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BalanceRepository {
+class BalanceRepositoryImpl implements BalanceRepository{
+  @override
   getMyPoints() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -22,6 +24,7 @@ class BalanceRepository {
     return rsPoints;
   } //end of getMyPoints function
 
+  @override
   chargeMyPoints(int points) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -48,6 +51,7 @@ class BalanceRepository {
     }
   }
 
+  @override
   refundMyPoints(int points) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 

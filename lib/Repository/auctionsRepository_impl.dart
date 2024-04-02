@@ -1,14 +1,16 @@
 import 'dart:convert';
 
 // import 'package:firebase_storage/firebase_storage.dart';
-import 'package:fishauction_app/DataSource/datasource.dart';
-import 'package:fishauction_app/DataSource/datasource_impl.dart';
+import 'package:fishauction_app/Datahandler/datahandler.dart';
+import 'package:fishauction_app/Datahandler/datahandler_impl.dart';
 import 'package:fishauction_app/Model/auction_model.dart';
+import 'package:fishauction_app/Repository/auctionsRepository.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuctionsRepository {
+class AuctionsRepositoryImpl implements AuctionsRepository {
   // 모든 경매리스트 가져오는 함수
+  @override
   Future<List<AuctionModel>> getWholeList() async {
     List<AuctionModel> auctionList = [];
 
@@ -27,6 +29,7 @@ class AuctionsRepository {
   } // end of getWholeList
 
   // Function01 : 경매1개의 정보 가저오는 함수.
+  @override
   Future<AuctionModel?> getAuction(int auctionid) async {
     //Field
     var headers = {
@@ -47,6 +50,7 @@ class AuctionsRepository {
     }
   } //end of getAuction
 
+  @override
   bidAuction(int aucID, int newPrice) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.get('accessToken');
@@ -60,6 +64,7 @@ class AuctionsRepository {
   }
 
   // 경매 등록하는 요청
+  @override
   openAuction(Map<String, String>? postdata) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.get('accessToken');

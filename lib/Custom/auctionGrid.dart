@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:fishauction_app/Controller/auctionImg_Controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
 import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textSmall.dart';
