@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:fishauction_app/Datahandler/datahandler_impl.dart';
 import 'package:fishauction_app/Model/doneAuction_model.dart';
+import 'package:fishauction_app/Repository/biddedRepository.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BiddedRepositroy {
+class BiddedRepositroyImpl implements BiddedRepositroy{
+  @override
   Future<(String, List<DoneAuctionModel>)> getMyAuctionList(String type) async {
     List<DoneAuctionModel> myAucList = [];
 

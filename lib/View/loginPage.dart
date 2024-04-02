@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () async {
                     var loginrs =
-                        await AuthRepository().doLogin(idTec.text, pwTec.text);
+                        await AuthRepositoryImpl ().doLogin(idTec.text, pwTec.text);
                     idTec.text = "";
                     pwTec.text = "";
                     loginAlert(context, loginrs);
@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(fixedSize: Size(170, 50)),
                   child: TextMiddle(msg: "로그인", clr: Colors.red),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 ElevatedButton(

@@ -7,7 +7,7 @@ import 'package:fishauction_app/Custom/textBig.dart';
 import 'package:fishauction_app/Custom/textMiddle.dart';
 import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Datahandler/firebase_datasource_impl.dart';
-import 'package:fishauction_app/Repository/auctions_repository.dart';
+import 'package:fishauction_app/Repository/auctionsRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -246,7 +246,7 @@ return Scaffold(
         'pic': pic
       };
 
-      bool result = await AuctionsRepository().openAuction(postdata);
+      bool result = await AuctionsRepositoryImpl().openAuction(postdata);
 
       if (result) {
         successAlert(context);
