@@ -34,6 +34,8 @@ firebase_app_id_file.json
 /build/
 firebase_options.dart
 .env
+.ios/
+.android/
 
 
 # Symbolication related

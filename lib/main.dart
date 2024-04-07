@@ -1,5 +1,6 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fishauction_app/firebase_options.dart';
 import 'package:fishauction_app/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' ;
@@ -8,7 +9,7 @@ import 'package:responsive_framework/responsive_breakpoints.dart';
 
 void main() async {
   await dotenv.load(fileName:".env");
-  Firebase.initializeApp();
+  Firebase.initializeApp( options: DefaultFirebaseOptions.currentPlatform,);
   runApp(const MyApp());
   
 }

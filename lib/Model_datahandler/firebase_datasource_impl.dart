@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:fishauction_app/DataSource/Firebase_datasource.dart';
+import 'package:fishauction_app/Model_datahandler/firebase_datasource.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +31,6 @@ class FirebaseDataSourceImpl implements Firebase_DataSource {
     // Firebase Storage에서 이미지 다운로드
     String downloadURL = "asd.jpg"; //==> data base 최초 생성시, 만들어둔 기본 image.
     try {
-      // firebase_storage.Reference ref =
       firebase_storage.Reference ref =
           firebase_storage.FirebaseStorage.instance.ref(filepath);
       downloadURL = await ref.getDownloadURL();
@@ -43,6 +42,8 @@ class FirebaseDataSourceImpl implements Firebase_DataSource {
         downloadURL = await ref.getDownloadURL();
       } catch(e) {
         // 다른 예외 상황 처리
+        print("-----------------------***----------------");
+        print(e);
         Logger().e(e);
         return null;
       } // try catch안의 if-else 종료

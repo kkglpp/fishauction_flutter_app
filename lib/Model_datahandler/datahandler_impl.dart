@@ -12,11 +12,9 @@ class DatahandlerImpl implements Datahandler {
     var url = Uri.parse('$defaultURL$addurl');
     try {
       var response = await http.get(url, headers: headers);
-
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
       }
-
       return response;
     } catch (e) {
       Logger().e("$addurl\n$e");
@@ -31,7 +29,6 @@ class DatahandlerImpl implements Datahandler {
     try {
       var response =
           await http.post(url, headers: headers, body: json.encode(data));
-
       if (!validStatusCodes.contains(response.statusCode)) {
         return ResponseResult.error;
       }

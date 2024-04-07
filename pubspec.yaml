@@ -50,6 +50,8 @@ dependencies:
 
   ## http 패키지
   http: ^1.1.2
+  ## http 대체 패키지 Dio
+  dio: ^5.4.2+1
   ##반응형을 위함
   responsive_framework: ^1.1.1
 
