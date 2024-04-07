@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fishauction_app/Model_datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
 import 'package:fishauction_app/Model_Repository/biddedRepository.dart';
 import 'package:fishauction_app/Model_model/doneAuction_model.dart';
 import 'package:logger/logger.dart';
@@ -18,7 +18,7 @@ class BiddedRepositroyImpl implements BiddedRepositroy{
       'Authorization': 'Bearer $accessToken'
     };
 
-    var response = await DatahandlerImpl().get('bidded/user/$type', headers);
+    var response = await DatahandlerHttpImpl().get('bidded/user/$type', headers);
 
     try {
       var rbody = json.decode(utf8.decode(response.bodyBytes));

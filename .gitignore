@@ -36,6 +36,7 @@ firebase_options.dart
 .env
 .ios/
 .android/
+.macos/
 
 
 # Symbolication related

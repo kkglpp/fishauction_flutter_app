@@ -1,10 +1,12 @@
 //RestAPI에 부합되는 get post put patch Delete 기본 함수 만들기
 import 'dart:convert';
-import 'package:fishauction_app/Model_datahandler/datahandler.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_http.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 
-class DatahandlerImpl implements Datahandler {
+import 'staticforDatahandler.dart';
+
+class DatahandlerHttpImpl implements DatahandlerHttp {
   //Get 으로 request 보내고 response 받기.
 
   @override

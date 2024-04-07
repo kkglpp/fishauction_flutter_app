@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fishauction_app/Model_datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
 import 'package:fishauction_app/Model_Repository/balanceRepository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,7 +16,7 @@ class BalanceRepositoryImpl implements BalanceRepository{
       'Authorization': 'Bearer $accessToken'
     }; //end of headers
 
-    var response = await DatahandlerImpl().get('balance/', headers);
+    var response = await DatahandlerHttpImpl().get('balance/', headers);
     print(response);
     var rbody = json.decode(utf8.decode(response.bodyBytes));
     int rsPoints = int.parse(rbody['result']);
@@ -43,9 +43,9 @@ class BalanceRepositoryImpl implements BalanceRepository{
 
     try {
       var response =
-          await DatahandlerImpl().post("balance/", data, headers: headers);
+          await DatahandlerHttpImpl().post("balance/", data, headers: headers);
 
-      print(response);
+      // print(response);
     } catch (e) {
       print("에러 메시지 $e");
     }
@@ -70,7 +70,7 @@ class BalanceRepositoryImpl implements BalanceRepository{
 
     try {
       var response =
-          await DatahandlerImpl().post("balance/", data, headers: headers);
+          await DatahandlerHttpImpl().post("balance/", data, headers: headers);
 
       print(response);
     } catch (e) {

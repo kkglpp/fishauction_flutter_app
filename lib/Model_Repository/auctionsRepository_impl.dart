@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 // import 'package:firebase_storage/firebase_storage.dart';
-import 'package:fishauction_app/Model_datahandler/datahandler.dart';
-import 'package:fishauction_app/Model_datahandler/datahandler_impl.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_http.dart';
+import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
 import 'package:fishauction_app/Model_Repository/auctionsRepository.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Model_datahandler/staticforDatahandler.dart';
 
 class AuctionsRepositoryImpl implements AuctionsRepository {
   // 모든 경매리스트 가져오는 함수
@@ -18,7 +20,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'accept': 'application/json',
     };
 
-    var response = await DatahandlerImpl().get('auctions', headers);
+    var response = await DatahandlerHttpImpl().get('auctions', headers);
     var rbody = json.decode(utf8.decode(response.bodyBytes));
 
     /* 결과로 받은 것은 List<dynamic> 형태이다. 
@@ -35,7 +37,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
     var headers = {
       'accept': 'application/json',
     };
-    var response = await DatahandlerImpl().get('auctions/$auctionid', headers);
+    var response = await DatahandlerHttpImpl().get('auctions/$auctionid', headers);
     //response 가 에러일 경우에는 null 리턴
     if (response == ResponseResult.error) {
       return null;
@@ -58,7 +60,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'accept': 'application/json',
       'Authorization': 'Bearer $accessToken'
     };
-    var response = await DatahandlerImpl()
+    var response = await DatahandlerHttpImpl()
         .patch('auctions/$aucID/$newPrice', null, headers: headers);
     return response.statusCode;
   }
@@ -74,7 +76,7 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
       'Authorization': 'Bearer $accessToken'
     };
     var response =
-        await DatahandlerImpl().post("auctions/", postdata, headers: headers);
+        await DatahandlerHttpImpl().post("auctions/", postdata, headers: headers);
     if (response != ResponseResult.error) {
       return true;
     } else {
