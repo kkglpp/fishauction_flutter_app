@@ -12,10 +12,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Model_datahandler/staticforDatahandler.dart';
 
 class AuctionsRepositoryImpl implements AuctionsRepository {
+  DatahandlerAuctionsImpl datasource = DatahandlerAuctionsImpl();
   // 모든 경매리스트 가져오는 함수
   @override
   Future<List<AuctionModel>?> getWholeList() async {
-    DatahandlerAuctionsImpl datasource = DatahandlerAuctionsImpl();
+    
 
     // List<AuctionModel> auctionList = [];
 /* HTTP 쓸때 코드
@@ -27,13 +28,11 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
         List<dynamic> result = rbody['result'];
     auctionList.addAll(result.map((data) => AuctionModel.fromJson(data)));
      */
-
     Response? response =
         await datasource.get(); //data handler 를 통해서 서버에서 경매 목록을 받아옴.
     if (response == null) {
       return null;
     } // datahandler 에서 에러 발생해서 null 값 넘어오는 경우 처리. null 반환.
-
     try {
       Map<String, dynamic> rbody = response.data;
       List<AuctionModel> auctionList = rbody['result']
@@ -84,20 +83,9 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
 
   // 경매 등록하는 요청
   @override
-  openAuction(Map<String, String>? postdata) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var accessToken = prefs.get('accessToken');
-    var headers = {
-      'accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer $accessToken'
-    };
-    var response = await DatahandlerHttpImpl()
-        .post("auctions/", postdata, headers: headers);
-    if (response != ResponseResult.error) {
-      return true;
-    } else {
-      return false;
-    }
+  Future<ResponseResult> openAuction(Map<String, String>? postdata) async {
+    ResponseResult rs = await datasource
+        .postForOpenAuction(postdata);
+        return rs;
   } //end of openAuction
 } //end of AuctionListVM

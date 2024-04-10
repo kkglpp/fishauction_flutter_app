@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
 import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
 import 'package:fishauction_app/Custom/insertTextBox.dart';
@@ -233,39 +234,26 @@ class OpenAuctionPage extends StatelessWidget {
     await context.read<OpenAuctionImgController>().selectImage();
   }
 
-  //경매 열기 (Firestorage에 이미지저장 -> 경매 열기 요청)
+  
   //경매 열기 확인버튼 누르면 작동
   openRequest(BuildContext context, int startprice, String title, String fish,
       String content, String filepath) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     String pic =
         '${prefs.get('uid')}${DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now())}.jpg';
-
-    bool uploadeResult =
-        await FirebaseDataSourceImpl().uploadPic(filepath, pic);
-    try {
-      if (uploadeResult) {
-        Map<String, String>? postdata = {
-          'pricestart': startprice.toString(),
-          'title': title,
-          'content': content,
-          'fish': fish,
-          'pic': pic
-        };
-
-        bool result = await AuctionsRepositoryImpl().openAuction(postdata);
-
-        if (result) {
-          successAlert(context);
-        } else {
-          failAlert(context);
-        }
-      } else {
-        failAlert(context);
-      }
-    } catch (e) {
-      Logger().e("에러: $e");
-    }
+    ResponseResult result;
+    bool uploadeResult = false;
+    Map<String, String> postdata = {
+      'pricestart': startprice.toString(),
+      'title': title,
+      'content': content,
+      'fish': fish,
+      'pic': pic
+    };
+    var rs = await context
+        .read<OpenAuctionImgController>()
+        .openAuction(postdata, filepath, context);
   }
 
   // 경매 시작가격 오류 메시지
@@ -295,61 +283,4 @@ class OpenAuctionPage extends StatelessWidget {
           );
         });
   } //error alert 종료
-
-  // 경매 등록 완료 메시지
-  successAlert(BuildContext ctx) {
-    showDialog(
-        context: ctx,
-        barrierDismissible: false,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            title: const TextBig(
-              msg: "경매 등록 성공",
-              clr: Colors.blue,
-            ),
-            content: TextMiddle(
-                ta: 1,
-                clr: Theme.of(ctx).colorScheme.onBackground,
-                msg: "경매 등록이 완료 되었습니다."),
-            actions: [
-              Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                      Navigator.of(ctx).pop();
-                    },
-                    child: const Text("확인")),
-              ),
-            ],
-          );
-        });
-  } //success alert 종료
-
-  // 경매 등록 완료 메시지
-  failAlert(BuildContext ctx) {
-    showDialog(
-        context: ctx,
-        barrierDismissible: false,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            title: const TextBig(
-              msg: "경매 등록 실패",
-              clr: Colors.blue,
-            ),
-            content: TextMiddle(
-                ta: 1,
-                clr: Theme.of(ctx).colorScheme.onBackground,
-                msg: "경매가 등록되지 않았습니다."),
-            actions: [
-              Center(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(ctx).pop();
-                    },
-                    child: const Text("확인")),
-              ),
-            ],
-          );
-        });
-  } //success alert 종료
 }//end of class
