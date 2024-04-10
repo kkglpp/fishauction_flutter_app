@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:fishauction_app/Model_datahandler/datahandler_auth.dart';
 import 'package:dio/dio.dart';
 
@@ -14,16 +12,7 @@ class DatahandlerAuthImpl implements DatahandlerAuth {
   @override
   Future<Response?> postForLogin(String uid, String upw) async {
     Map<String, String> data = {"id": uid, "password": upw};
-    //   var headers = {
-    //   'Content-Type' : 'application/json',
-    //   'accept': 'application/json',
-    // };
-    //   var options = Options(
-    //     headers: headers
-    //   );
-    
     try {
-      print(url);
       Response response = await dio.post(
         url,
         data: data,
@@ -31,7 +20,6 @@ class DatahandlerAuthImpl implements DatahandlerAuth {
         // options
         Options(
           contentType: Headers.jsonContentType,
-          extra: {'accept': 'application/json'},
         ),
       );
       return response;

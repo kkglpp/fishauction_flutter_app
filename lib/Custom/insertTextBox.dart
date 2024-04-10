@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class InsertTextBox extends StatefulWidget {
   final String content;
-  TextEditingController tec;
-  bool visibleStatus;
-  double paddingEdge;
-  int maxLine;
-  double widthSize;
+  final TextEditingController tec;
+  final bool visibleStatus;
+  final double paddingEdge;
+  final int maxLine;
+  final double widthSize;
   
-  InsertTextBox({super.key,
+  const InsertTextBox({super.key,
     required this.content,
     required this.tec,
     this.visibleStatus = false,
