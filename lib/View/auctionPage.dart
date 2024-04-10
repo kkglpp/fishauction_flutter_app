@@ -16,11 +16,11 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:intl/intl.dart';
 
 class AuctionPage extends StatelessWidget {
-  int auctionid;
+  final int auctionid;
 
-  String? pic;
+  final String? pic;
 
-  AuctionPage({
+  const AuctionPage({
     Key? key,
     required this.auctionid,
     required this.pic,
