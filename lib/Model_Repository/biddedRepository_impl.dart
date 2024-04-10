@@ -1,33 +1,36 @@
-import 'dart:convert';
-
-import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
 import 'package:fishauction_app/Model_Repository/biddedRepository.dart';
+import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
 import 'package:fishauction_app/Model_model/doneAuction_model.dart';
 import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:dio/dio.dart';
 
-class BiddedRepositroyImpl implements BiddedRepositroy{
+import '../Model_datahandler/datahandler_bidded_impl.dart';
+
+class BiddedRepositroyImpl implements BiddedRepositroy {
+  DatahandlerBiddedImpl datasource = DatahandlerBiddedImpl();
   @override
-  Future<(String, List<DoneAuctionModel>)> getMyAuctionList(String type) async {
+  Future<(String, List<DoneAuctionModel>)> getMyAuctionList(
+      String type) async {
     List<DoneAuctionModel> myAucList = [];
+    ResponseResult status = ResponseResult.processing;
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var accessToken = prefs.get('accessToken');
-    var headers = {
-      'accept': 'application/json',
-      'Authorization': 'Bearer $accessToken'
-    };
-
-    var response = await DatahandlerHttpImpl().get('bidded/user/$type', headers);
-
-    try {
-      var rbody = json.decode(utf8.decode(response.bodyBytes));
-      List<dynamic> result = rbody['result'];
-      myAucList.addAll(result.map((data) => DoneAuctionModel.fromJson(data)));
-      return ("success", myAucList);
-    } catch (e) {
-      Logger().e("에러: $e");
-      return ("목록이 없습니다.", myAucList);
-    }
-  }
+    Response? response = await datasource.getForMyAuctionList(type);
+    if (response == null) {
+      status = ResponseResult.Empty;
+      return ("정보를 가져오는 중\n문제가 발생했습니다.", myAucList);
+    } else {
+      try {
+        Map<String, dynamic> rbody = response.data;
+        myAucList = rbody["result"]
+            .map<DoneAuctionModel>((json) => DoneAuctionModel.fromJson(json))
+            .toList();
+        status = ResponseResult.success;
+        return ("success", myAucList);
+      } catch (e) {
+        status = ResponseResult.error;
+        Logger().e("에러: $e");
+        return ("정보를 가져오는 중\n문제가 발생하였습니다.", myAucList);
+      }
+    } // if else 끝
+  }//getMyAuctionList 끝
 }

@@ -42,7 +42,7 @@ class DatahandlerAuctionsImpl implements DatahandlerAuctions {
   Future<ResponseResult> postForOpenAuction(data) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.get('accessToken');
-  var headers = {
+    var headers = {
       'accept': 'application/json',
       // 'Content-Type': 'application/json',
       'Authorization': 'Bearer $accessToken'

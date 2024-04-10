@@ -49,7 +49,7 @@ class PointChargingPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -158,7 +158,7 @@ class PointChargingPage extends StatelessWidget {
               );
             }), // 충전할 포인트 확인하는 sizedbox - row 끝.
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -183,11 +183,11 @@ class PointChargingPage extends StatelessWidget {
                           showWarning(context);
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         "-10,000",
                         style: TextStyle(fontWeight: FontWeight.w800),
                       )),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red.withAlpha(150),
@@ -196,14 +196,14 @@ class PointChargingPage extends StatelessWidget {
                         addPoint = addPoint + 10000;
                         addPoints(context, beforePoint + addPoint);
                       },
-                      child: Text(
+                      child: const Text(
                         "+ 10,000",
                         style: TextStyle(fontWeight: FontWeight.w800),
                       )),
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: widthSize,
               child: ElevatedButton(
@@ -220,13 +220,13 @@ class PointChargingPage extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: widthSize * 0.2,
-                          child: Icon(
+                          child: const Icon(
                             Icons.credit_card_sharp,
                             size: 30,
                           )),
                       SizedBox(
                           width: widthSize * 0.3,
-                          child: TextMiddle(
+                          child: const TextMiddle(
                             msg: "결재하기",
                             clr: Colors.white,
                             ta: 1,
@@ -234,7 +234,7 @@ class PointChargingPage extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
@@ -251,13 +251,13 @@ class PointChargingPage extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: widthSize * 0.2,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_sharp,
                             size: 30,
                           )),
                       SizedBox(
                           width: widthSize * 0.3,
-                          child: TextMiddle(
+                          child: const TextMiddle(
                             msg: "돌아가기",
                             clr: Colors.white,
                             ta: 1,
@@ -265,7 +265,7 @@ class PointChargingPage extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
           ],
@@ -298,13 +298,13 @@ class PointChargingPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("충전 금액을 더 이상 낮출 수 없습니다."),
+            content: const Text("충전 금액을 더 이상 낮출 수 없습니다."),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
@@ -315,14 +315,14 @@ class PointChargingPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("충전 완료"),
+            content: const Text("충전 완료"),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
@@ -333,14 +333,14 @@ class PointChargingPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("충전 실패"),
+            content: const Text("충전 실패"),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
