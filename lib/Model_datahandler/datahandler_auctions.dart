@@ -1,7 +1,7 @@
 
 abstract class DatahandlerAuctions {
 
-  get(String addurl, Map<String, String>? headers);
+  get() ;
   post(String addurl, dynamic data, {Map<String, String>? headers});
   put(String addurl, dynamic data, {Map<String, String>? headers});
   patch(String addurl, dynamic data, {Map<String, String>? headers});

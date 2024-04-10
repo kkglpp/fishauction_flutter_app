@@ -27,23 +27,27 @@ class AuctionWholeList extends StatelessWidget {
                   // print(state.length);
                 }
                 return state.isEmpty
+                    // state : Auction 목록이다. 이게 비어있으면 그냥 기본 사진으로 로딩화면을 대체.
                     ? Image.asset("images/fishing_default.jpeg")
+                    // state가 비어있지 않으면 GridView로 전체 경매 목록을 보여준다.
+                    //SliverGriddDelegateWithFixedcrossAxisCount
                     : Expanded(
                         child: RefreshIndicator(
                           onRefresh: () => loadData(context),
                           child: GridView(
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      mainAxisSpacing: 5,
-                                      crossAxisSpacing: 5),
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 5,
+                                crossAxisSpacing: 5,
+                              ),
                               children: [
                                 for (int index = 0;
                                     index < state.length;
                                     index++)
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: GestureDetector(
+                                    child: GestureDetector( // 각 Gird (Card) 를 누르면 해당 경매의 상세페이지로 이동.
                                       onTap: () => Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) {
@@ -60,17 +64,19 @@ class AuctionWholeList extends StatelessWidget {
                                                   create: (context) =>
                                                       AuctoinImgController())
                                             ],
-                                            child: AuctionPage(
+                                            child: AuctionPage( 
                                               auctionid: state[index].auctionid,
                                               pic: state[index].pic,
                                             ),
                                           );
-                                        }), //end of builder,
+                                        },
+                                        ), //end of builder,
                                       ).then((value) =>
                                           loadData(context)), //end of push,
                                       child: BlocProvider(
                                         create: (context) =>
                                             AuctoinImgController(),
+// Gird (Card) 를 별도의 Widget 으로 만들어서 불러옴. custom / AuctionGrid.dart                                             
                                         child: AuctionGrid(
                                           title: state[index].title,
                                           fish: state[index].fish,
@@ -106,7 +112,7 @@ class AuctionWholeList extends StatelessWidget {
 //function
   // 경매 목록을 갱신하는 함수.
   loadData(BuildContext context) async {
-    await context.read<AuctionWholeListController>().loadAuctionList();
+    await context.read<AuctionWholeListController>().loadAuctionList(context);
   }
 
   //새로운 경매를 시작하는 페이지로 이동하는 함수.
