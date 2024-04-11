@@ -6,6 +6,7 @@ import 'package:fishauction_app/Custom/textTitle.dart';
 import 'package:fishauction_app/Model_Repository/balanceRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:path/path.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../ViewModel_Controller/myInfoPage_controller.dart';
@@ -349,7 +350,7 @@ class PointChargingPage extends StatelessWidget {
 //function
   doCharge(BuildContext ctx, int amount) async {
     try {
-      await BalanceRepositoryImpl().chargeMyPoints(amount);
+      await ctx.read<PointChargerController>().chargePoint(amount);
     } catch (e) {
       showFailedDialog(ctx);
     }

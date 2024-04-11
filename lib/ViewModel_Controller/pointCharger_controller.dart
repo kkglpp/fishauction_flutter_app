@@ -1,19 +1,27 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
-class PointChargerController extends Cubit<int>{
+import '../Model_Repository/balanceRepository_impl.dart';
+import '../Model_datahandler/staticforDatahandler.dart';
+
+class PointChargerController extends Cubit<int> {
   PointChargerController(super.initialState);
 
-addPoint(){
+  addPoint() {
+    emit(state + 10000);
+  }
 
-  emit(state+10000);
+  subPoint() {
+    emit(state - 10000);
+  }
 
-}
-subPoint(){
+  chargePoint(int amount) async {
+    try{
+    ResponseResult rs = await BalanceRepositoryImpl().chargeMyPoints(amount);
+    }catch(e){
+      Logger().e("Error in controller");
+    }
 
-  emit(state-10000);
 
-}
-
-
-
+  }
 }
