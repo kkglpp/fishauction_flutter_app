@@ -30,6 +30,13 @@ class AuctionGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(title);
+    // print(urlImg);
+    // print("123123 : $insertDate");
+    // if(title == "도미팝니당!"){
+    //   print("*****\n");
+    //   print(urlImg);
+    // }
     double? widthSize = ResponsiveValue(
           context,
           conditionalValues: [
@@ -40,7 +47,7 @@ class AuctionGrid extends StatelessWidget {
           ],
         ).value ??
         100;
-        print("Gird 열기");
+        // print("Gird 열기");
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -49,9 +56,9 @@ class AuctionGrid extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             BlocBuilder<AuctoinImgController, File?>(builder: (context, state) {
-              print(state);
+              // print("state: $state");
               if (state == null) {
-                print("loadImg 시작전 urlImg" + urlImg!);
+                // print("loadImg 시작전 urlImg : " + urlImg!);
                 _loadImg(context, urlImg!);
                 
               }
@@ -64,6 +71,7 @@ class AuctionGrid extends StatelessWidget {
                         width: widthSize,
                         fit: BoxFit.fitWidth,
                         errorBuilder: (context, error, stackTrace) {
+                          // print("error 발생 : $title \n error : $error");
                           return Image.asset(
                             'images/fishing_default.jpeg',
                             width: widthSize,
@@ -85,14 +93,14 @@ class AuctionGrid extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [TextMiddle(msg: "$fish\t\t현재가 : $price")],
+              children: [TextSmall(msg: "$fish\t\t현재가 : $price")],
             )
           ],
         ));
   } //end of Widget
 
   _loadImg(BuildContext ctx, String imgname) {
-    print("_loadImg" + imgname);
+    // print("_loadImg : " + imgname);
     ctx.read<AuctoinImgController>().loadImg(imgname);
   }
 

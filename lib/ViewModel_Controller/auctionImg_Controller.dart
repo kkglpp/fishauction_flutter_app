@@ -8,9 +8,10 @@ class AuctoinImgController extends Cubit<File?> {
   AuctoinImgController() : super(null);
 
   loadImg(String filename) async {
+    // print("controller : $filename \n ********");
     File? tmpfile = await FirebaseDataSourceImpl().downloadPic(filename);
     try {
-      emit(tmpfile);
+      emit(tmpfile!);
     } catch (e) {
       Logger().e(e);
     }

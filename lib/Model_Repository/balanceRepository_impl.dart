@@ -8,10 +8,8 @@ import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BalanceRepositoryImpl implements BalanceRepository{
+class BalanceRepositoryImpl implements BalanceRepository {
   DatahandlerBalanceImpl datasource = DatahandlerBalanceImpl();
-
-
 
   @override
   getMyPoints() async {
@@ -25,7 +23,6 @@ class BalanceRepositoryImpl implements BalanceRepository{
     }; //end of headers
 
     var response = await DatahandlerHttpImpl().get('balance/', headers);
-    print(response);
     var rbody = json.decode(utf8.decode(response.bodyBytes));
     int rsPoints = int.parse(rbody['result']);
 
@@ -34,29 +31,25 @@ class BalanceRepositoryImpl implements BalanceRepository{
 
   @override
   chargeMyPoints(int amount) async {
-
     try {
-      String? rs =
-          await datasource.postForChargePoints(amount);
-      if (rs! == 'Success'){
+      String? rs = await datasource.postForChargePoints(amount);
+      print(rs);
+      if (rs! == 'Success') {
         return ResponseResult.success;
       }
-      
     } catch (e) {
-      Logger().e("error in Repositroy : $e");
+      Logger().e("error in Repositroy :\n$e");
     }
     return ResponseResult.error;
   }
 
   @override
   refundMyPoints(int amount) async {
-  try {
-      String? rs =
-          await datasource.postForRefundPoints(amount);
-      if (rs! == 'Success'){
+    try {
+      String? rs = await datasource.postForRefundPoints(amount);
+      if (rs! == 'Success') {
         return ResponseResult.success;
       }
-      
     } catch (e) {
       Logger().e("error in Repositroy : $e");
     }

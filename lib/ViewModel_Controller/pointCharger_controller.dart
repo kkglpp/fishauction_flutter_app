@@ -18,10 +18,21 @@ class PointChargerController extends Cubit<int> {
   chargePoint(int amount) async {
     try{
     ResponseResult rs = await BalanceRepositoryImpl().chargeMyPoints(amount);
+    return rs;
     }catch(e){
-      Logger().e("Error in controller");
+      Logger().e("Error in controller :\n$e");
     }
-
-
   }
+
+  refundPoint(int amount) async {
+        try{
+    ResponseResult rs = await BalanceRepositoryImpl().refundMyPoints(amount);
+    return rs;
+    }catch(e){
+      Logger().e("Error in controller :\n$e");
+    }
+  }
+
+
+
 }

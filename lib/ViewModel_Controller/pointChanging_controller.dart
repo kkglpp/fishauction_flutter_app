@@ -9,10 +9,6 @@ class PointChagingController extends Cubit <int>{
     emit(newPoint);
   }
 
-  chargePoint(int amount)async{
-    ResponseResult rs =  await BalanceRepositoryImpl().chargeMyPoints(amount);
-  }
-
 
 
 

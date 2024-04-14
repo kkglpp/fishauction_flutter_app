@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import '../Model_datahandler/staticforDatahandler.dart';
 import '../ViewModel_Controller/myInfoPage_controller.dart';
 
 class PointChargingPage extends StatelessWidget {
@@ -349,12 +350,18 @@ class PointChargingPage extends StatelessWidget {
 
 //function
   doCharge(BuildContext ctx, int amount) async {
+    ResponseResult rs = ResponseResult.processing;
+    // PointChargerController 에서 
     try {
-      await ctx.read<PointChargerController>().chargePoint(amount);
+      rs = await ctx.read<PointChargerController>().chargePoint(amount);
     } catch (e) {
       showFailedDialog(ctx);
     }
-
+    if(rs == ResponseResult.success){
     showSuccessDialog(ctx);
+    }else{
+      showFailedDialog(ctx);
+    }
+
   }
 }//end of class

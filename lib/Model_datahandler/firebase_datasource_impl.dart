@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:dio/dio.dart';
 import 'package:fishauction_app/Model_datahandler/firebase_datasource.dart';
 import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
 import 'package:logger/logger.dart';
@@ -30,27 +31,38 @@ class FirebaseDataSourceImpl implements Firebase_DataSource {
 /*             */
   downloadPic(String? filepath) async {
     // Firebase Storage에서 이미지 다운로드
-    String downloadURL = "asd.jpg"; //==> data base 최초 생성시, 만들어둔 기본 image.
+    String downloadURL; //==> data base 최초 생성시, 만들어둔 기본 image.
     try {
       firebase_storage.Reference ref =
           firebase_storage.FirebaseStorage.instance.ref(filepath);
       downloadURL = await ref.getDownloadURL();
+      // print("downLoadURL : ");
+      // print(downloadURL);
     } catch (e) {
-      try{
+      try {
         // 파일명 잘못 들어간 내용들 에러 처리 하기 위함.
         firebase_storage.Reference ref =
             firebase_storage.FirebaseStorage.instance.ref('$filepath.jpg');
         downloadURL = await ref.getDownloadURL();
-      } catch(e) {
+      } catch (e) {
         // 다른 예외 상황 처리
-        print("-----------------------***----------------");
-        print(e);
-        Logger().e(e);
+        Logger().e("Error in firebaseDatasource : \n $e");
         return null;
       } // try catch안의 if-else 종료
     } // try - catch(e) 종료
-    http.Response response = await http.get(Uri.parse(downloadURL));
-    Uint8List resultPic = response.bodyBytes;
+    Response response = await Dio().get<List<int>>(downloadURL,
+        options: Options(responseType: ResponseType.bytes));
+
+    Uint8List resultPic = Uint8List.fromList(response.data);
+
+// http 패키지로 할떄
+    // http.Response response = await http.get(Uri.parse(downloadURL));
+    // Uint8List resultPic = response.bodyBytes;
+
+    // if(filepath== "asd.jpg"){
+    //   print("downloadURL : \n $downloadURL");
+    //   print("resultPic : \n $resultPic");
+    // }
     Directory tempDir = await getTemporaryDirectory();
     // 임시 파일 경로 생성
     String tempPath = tempDir.path + filepath!;

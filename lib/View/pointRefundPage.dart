@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import '../Model_datahandler/staticforDatahandler.dart';
 import '../ViewModel_Controller/myInfoPage_controller.dart';
 
 class PointRefundPage extends StatelessWidget {
@@ -369,12 +370,17 @@ class PointRefundPage extends StatelessWidget {
 
 //function
   doRefund(BuildContext ctx, int amount) async {
+    ResponseResult rs = ResponseResult.processing;
+
     try {
-      await BalanceRepositoryImpl().refundMyPoints(amount);
+      rs = await BalanceRepositoryImpl().refundMyPoints(amount);
     } catch (e) {
       showFailedDialog(ctx);
     }
-
-    showSuccessDialog(ctx);
+    if (rs == ResponseResult.success) {
+      showSuccessDialog(ctx);
+    } else {
+      showFailedDialog(ctx);
+    }
   }
 }//end of class
