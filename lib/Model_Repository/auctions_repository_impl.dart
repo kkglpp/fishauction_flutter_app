@@ -6,12 +6,16 @@ import 'package:fishauction_app/Model_datahandler/datahandler_auctions_impl.dart
 import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
 import 'package:fishauction_app/Model_Repository/auctions_repository.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
+import 'package:fishauction_app/const/dataSource/datakey.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Model_datahandler/static_for_datahandler.dart';
 
 class AuctionsRepositoryImpl implements AuctionsRepository {
+    final storage = const FlutterSecureStorage();
+
   DatahandlerAuctionsImpl datasource = DatahandlerAuctionsImpl();
   // 모든 경매리스트 가져오는 함수
   @override
@@ -70,8 +74,9 @@ class AuctionsRepositoryImpl implements AuctionsRepository {
 
   @override
   bidAuction(int aucID, int newPrice) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    var accessToken = prefs.get('accessToken');
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // var accessToken = prefs.get('accessToken');
+    var accessToken = storage.read(key:ACCESS_TOKEN_KEY);
     var headers = {
       'accept': 'application/json',
       'Authorization': 'Bearer $accessToken'

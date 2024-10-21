@@ -11,6 +11,8 @@ import '../Model_datahandler/datahandler_auth_impl.dart';
 // 성공하면 1을  실패하면 2를 반환한다.
 
 class AuthRepositoryImpl implements AuthRepository {
+
+  final storage = const FlutterSecureStorage();
   @override
   Future<bool> doLogin(String uid, String upw) async {
     // DatahandlerHttpImpl datasource = DatahandlerHttpImpl();
@@ -31,7 +33,6 @@ class AuthRepositoryImpl implements AuthRepository {
       // await prefs.setString('refreshToken', rheader['refresh_token']!.first);
       // await prefs.setString('nickname', rbody[0]['nickname']!);
       // await prefs.setString('uid', uid);
-      final storage = FlutterSecureStorage();
       await storage.write(key: ACCESS_TOKEN_KEY,value:  rheader['access_token']!.first);
       await storage.write(key:RFRESH_TOKEN_KEY,value:  rheader['refresh_token']!.first);
       await storage.write(key:NiCKNAME,value:  rbody[0]['nickname']!);
