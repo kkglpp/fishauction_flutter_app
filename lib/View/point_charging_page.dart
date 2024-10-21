@@ -1,18 +1,19 @@
-import 'package:fishauction_app/ViewModel_Controller/pointChanging_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/pointCharger_controller.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model_Repository/balanceRepository_impl.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:fishauction_app/ViewModel_Controller/point_changing_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/point_charger_controller.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/Custom/text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-import '../Model_datahandler/staticforDatahandler.dart';
-import '../ViewModel_Controller/myInfoPage_controller.dart';
+import '../Model_datahandler/static_for_datahandler.dart';
+import '../ViewModel_Controller/myInfo_page_controller.dart';
 
-class PointRefundPage extends StatelessWidget {
-  const PointRefundPage({super.key});
+class PointChargingPage extends StatelessWidget {
+  const PointChargingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class PointRefundPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -61,9 +62,9 @@ class PointRefundPage extends StatelessWidget {
               if (loadcheck) {
                 beforePoint = state;
 
-                didData(context, state - addPoint);
+                didData(context, state + addPoint);
               } else {
-                loadData(context, state - addPoint);
+                loadData(context, state + addPoint);
                 loadcheck = true;
               }
 
@@ -107,7 +108,7 @@ class PointRefundPage extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: TextBig(
-                        msg: "환전할 포인트 : ",
+                        msg: "충전할 포인트 : ",
                         clr: Theme.of(context).colorScheme.onBackground,
                         ta: 0,
                       ),
@@ -140,7 +141,7 @@ class PointRefundPage extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: TextBig(
-                        msg: "환전 후 포인트 : ",
+                        msg: "충전 후 포인트 : ",
                         clr: Theme.of(context).colorScheme.onBackground,
                         ta: 0,
                       ),
@@ -149,7 +150,7 @@ class PointRefundPage extends StatelessWidget {
                       height: 50,
                       width: 150,
                       child: TextBig(
-                        msg: "${state} 원",
+                        msg: "$state 원",
                         clr: Theme.of(context).colorScheme.onBackground,
                         ta: 2,
                       ),
@@ -159,7 +160,7 @@ class PointRefundPage extends StatelessWidget {
               );
             }), // 충전할 포인트 확인하는 sizedbox - row 끝.
 
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 
@@ -179,36 +180,32 @@ class PointRefundPage extends StatelessWidget {
                       onPressed: () {
                         if (addPoint > 10000) {
                           addPoint = addPoint - 10000;
-                          subPoints(context, beforePoint - addPoint);
+                          subPoints(context, beforePoint + addPoint);
                         } else {
-                          showWarning2(context);
+                          showWarning(context);
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         "-10,000",
                         style: TextStyle(fontWeight: FontWeight.w800),
                       )),
-                  Spacer(),
+                  const Spacer(),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red.withAlpha(150),
                           foregroundColor: Colors.white),
                       onPressed: () {
-                        if (addPoint < beforePoint - 10000) {
-                          addPoint = addPoint + 10000;
-                          addPoints(context, beforePoint - addPoint);
-                        } else {
-                          showWarning(context);
-                        }
+                        addPoint = addPoint + 10000;
+                        addPoints(context, beforePoint + addPoint);
                       },
-                      child: Text(
+                      child: const Text(
                         "+ 10,000",
                         style: TextStyle(fontWeight: FontWeight.w800),
                       )),
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: widthSize,
               child: ElevatedButton(
@@ -216,30 +213,30 @@ class PointRefundPage extends StatelessWidget {
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       foregroundColor: Colors.white),
                   onPressed: () {
-                    print("before : $beforePoint");
-                    print("add : $addPoint");
-                    doRefund(context, addPoint);
+                    // print("before : $beforePoint");
+                    // print("add : $addPoint");
+                    doCharge(context, addPoint);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
                           width: widthSize * 0.2,
-                          child: Icon(
+                          child: const Icon(
                             Icons.credit_card_sharp,
                             size: 30,
                           )),
                       SizedBox(
                           width: widthSize * 0.3,
-                          child: TextMiddle(
-                            msg: "환전하기",
+                          child: const TextMiddle(
+                            msg: "결재하기",
                             clr: Colors.white,
                             ta: 1,
                           ))
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             SizedBox(
@@ -256,13 +253,13 @@ class PointRefundPage extends StatelessWidget {
                     children: [
                       SizedBox(
                           width: widthSize * 0.2,
-                          child: Icon(
+                          child: const Icon(
                             Icons.arrow_back_sharp,
                             size: 30,
                           )),
                       SizedBox(
                           width: widthSize * 0.3,
-                          child: TextMiddle(
+                          child: const TextMiddle(
                             msg: "돌아가기",
                             clr: Colors.white,
                             ta: 1,
@@ -270,7 +267,7 @@ class PointRefundPage extends StatelessWidget {
                     ],
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
           ],
@@ -303,30 +300,13 @@ class PointRefundPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("환전 금액은 잔여포인트를 넘을 수 없습니다."),
+            content: const Text("충전 금액을 더 이상 낮출 수 없습니다."),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
-            ],
-          );
-        });
-  } //showWarning
-
-  showWarning2(BuildContext ctx) {
-    showDialog(
-        context: ctx,
-        builder: (BuildContext ctx) {
-          return AlertDialog(
-            content: Text("환전 금액은 0보다 작을 수 없습니다."),
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
@@ -337,14 +317,14 @@ class PointRefundPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("환전 완료"),
+            content: const Text("충전 완료"),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
@@ -355,32 +335,33 @@ class PointRefundPage extends StatelessWidget {
         context: ctx,
         builder: (BuildContext ctx) {
           return AlertDialog(
-            content: Text("환전 실패"),
+            content: const Text("충전 실패"),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                     Navigator.of(ctx).pop();
                   },
-                  child: Text("확인"))
+                  child: const Text("확인"))
             ],
           );
         });
   }
 
 //function
-  doRefund(BuildContext ctx, int amount) async {
+  doCharge(BuildContext ctx, int amount) async {
     ResponseResult rs = ResponseResult.processing;
-
+    // PointChargerController 에서 
     try {
-      rs = await BalanceRepositoryImpl().refundMyPoints(amount);
+      rs = await ctx.read<PointChargerController>().chargePoint(amount);
     } catch (e) {
       showFailedDialog(ctx);
     }
-    if (rs == ResponseResult.success) {
-      showSuccessDialog(ctx);
-    } else {
+    if(rs == ResponseResult.success){
+    showSuccessDialog(ctx);
+    }else{
       showFailedDialog(ctx);
     }
+
   }
 }//end of class

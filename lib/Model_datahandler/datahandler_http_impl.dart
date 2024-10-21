@@ -4,7 +4,7 @@ import 'package:fishauction_app/Model_datahandler/datahandler_http.dart';
 import 'package:logger/logger.dart';
 import 'package:http/http.dart' as http;
 
-import 'staticforDatahandler.dart';
+import 'static_for_datahandler.dart';
 
 class DatahandlerHttpImpl implements DatahandlerHttp {
   //Get 으로 request 보내고 response 받기.

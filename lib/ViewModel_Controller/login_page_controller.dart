@@ -1,4 +1,4 @@
-import 'package:fishauction_app/Model_Repository/authRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/auth_repository_impl.dart';
 
 class LoginPageController{
 

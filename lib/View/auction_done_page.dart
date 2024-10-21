@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
-import 'package:fishauction_app/Custom/textSmall.dart';
-import 'package:fishauction_app/Custom/textTitle.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_page_controller.dart';
+import 'package:fishauction_app/Custom/text_small.dart';
+import 'package:fishauction_app/Custom/text_title.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -67,7 +67,7 @@ class AuctionDonePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextMiddle(
-                                msg: state.seller_id,
+                                msg: state.sellerId,
                                 clr: Theme.of(context).colorScheme.onBackground,
                               ),
                               const SizedBox(

@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -71,8 +71,7 @@ class AuctionCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextMiddle(
-                      msg:
-                          "${biddeddate != null ? biddeddate!.split("T")[0] : '2023-11-11'}",
+                      msg: biddeddate.split("T")[0],
                       clr: Theme.of(context).colorScheme.onBackground,
                     ),
                   ],

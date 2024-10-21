@@ -1,11 +1,11 @@
-import 'package:fishauction_app/ViewModel_Controller/myInfoPage_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/pointChanging_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/pointCharger_controller.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/View/pointChargingPage.dart';
-import 'package:fishauction_app/View/pointRefundPage.dart';
+import 'package:fishauction_app/ViewModel_Controller/myInfo_page_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/point_changing_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/point_charger_controller.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/View/point_charging_page.dart';
+import 'package:fishauction_app/View/point_refund_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -47,16 +47,16 @@ class MyinfoPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
-            Spacer(),
+            const Spacer(),
 
-            Icon(
+            const Icon(
               Icons.monetization_on_rounded,
               size: 200,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            Spacer(),
+            const Spacer(),
 
             /*화면구성 02
             현재 잔여 포인트 확인하는 SizedBox - Row
@@ -97,7 +97,7 @@ class MyinfoPage extends StatelessWidget {
                 ],
               ),
             ), // 현재 잔여 포인트 확인하는 sizedbox - row 끝.
-            Spacer(),
+            const Spacer(),
 
             /*화면구성 03
             충전 및 환불하러 가는 버튼
@@ -128,7 +128,7 @@ class MyinfoPage extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: widthSize * 0.3,
-                      child: Icon(
+                      child: const Icon(
                         Icons.credit_score_outlined,
                         size: 40,
                         color: Colors.white,
@@ -144,7 +144,7 @@ class MyinfoPage extends StatelessWidget {
                   ],
                 )),
 
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -173,7 +173,7 @@ class MyinfoPage extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: widthSize * 0.3,
-                      child: Icon(
+                      child: const Icon(
                         Icons.currency_exchange_outlined,
                         size: 40,
                         color: Colors.white,
@@ -188,7 +188,7 @@ class MyinfoPage extends StatelessWidget {
                     ),
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

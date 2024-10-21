@@ -3,17 +3,13 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:fishauction_app/Model_datahandler/firebase_datasource.dart';
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:http/http.dart' as http;
 
-class FirebaseDataSourceImpl implements Firebase_DataSource {
+class FirebaseDataSourceImpl implements FirebaseDataSource {
   @override
   uploadPic(String? filepath, String pic) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       // Firebase Storage에 이미지 업로드
       firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
@@ -29,6 +25,7 @@ class FirebaseDataSourceImpl implements Firebase_DataSource {
   } // end of uploadPic
 
 /*             */
+  @override
   downloadPic(String? filepath) async {
     // Firebase Storage에서 이미지 다운로드
     String downloadURL; //==> data base 최초 생성시, 만들어둔 기본 image.

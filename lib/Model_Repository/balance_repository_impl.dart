@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:fishauction_app/Model_datahandler/datahandler_balance_impl.dart';
 import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
-import 'package:fishauction_app/Model_Repository/balanceRepository.dart';
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
+import 'package:fishauction_app/Model_Repository/balance_repository.dart';
+import 'package:fishauction_app/Model_datahandler/static_for_datahandler.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,7 +32,7 @@ class BalanceRepositoryImpl implements BalanceRepository {
   chargeMyPoints(int amount) async {
     try {
       String? rs = await datasource.postForChargePoints(amount);
-      print(rs);
+      // print(rs);
       if (rs! == 'Success') {
         return ResponseResult.success;
       }

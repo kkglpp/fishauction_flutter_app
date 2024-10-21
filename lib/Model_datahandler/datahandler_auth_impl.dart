@@ -1,7 +1,7 @@
 import 'package:fishauction_app/Model_datahandler/datahandler_auth.dart';
 import 'package:dio/dio.dart';
 
-import 'staticforDatahandler.dart';
+import 'static_for_datahandler.dart';
 
 class DatahandlerAuthImpl implements DatahandlerAuth {
   final dio = Dio();
@@ -24,8 +24,8 @@ class DatahandlerAuthImpl implements DatahandlerAuth {
       );
       return response;
     } catch (e) {
-      print("로그인 에러 발생 in dataHandler");
-      print(e);
+      // print("로그인 에러 발생 in dataHandler");
+      // print(e);
       return null;
     }
   }

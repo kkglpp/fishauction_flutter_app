@@ -1,32 +1,28 @@
 import 'dart:io';
+import 'package:fishauction_app/ViewModel_Controller/open_auction_img_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/open_auction_price_controller.dart';
+import 'package:fishauction_app/Custom/insert_text_box.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/Custom/text_title.dart';
 
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
-import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
-import 'package:fishauction_app/Custom/insertTextBox.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model_datahandler/firebase_datasource_impl.dart';
-import 'package:fishauction_app/Model_Repository/auctionsRepository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OpenAuctionPage extends StatelessWidget {
-  OpenAuctionPage({super.key});
-  late XFile? imgFile;
-  late int startPrice;
-  TextEditingController titleTec = TextEditingController();
-  TextEditingController contentTec = TextEditingController();
-  TextEditingController fishTec = TextEditingController();
+  const OpenAuctionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    late XFile? imgFile;
+    late int startPrice;
+    TextEditingController titleTec = TextEditingController();
+    TextEditingController contentTec = TextEditingController();
+    TextEditingController fishTec = TextEditingController();
     double? widthSize = ResponsiveValue(
           context,
           conditionalValues: [
@@ -101,79 +97,77 @@ class OpenAuctionPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: SizedBox(
-                        child: Container(
-                          width: 400,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                  width: widthSize * 0.3,
-                                  child: TextBig(
-                                    msg: "경매 시작가 : ",
-                                    clr: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    ta: 0,
-                                  )),
-                              BlocBuilder<OpenAuctionPriceController, int>(
-                                  builder: (context, state) {
-                                startPrice = state;
-                                return SizedBox(
-                                  width: widthSize * 0.3,
-                                  child: TextBig(
-                                    msg:
-                                        "${NumberFormat('#,###').format(state)} 원",
-                                    clr: Theme.of(context)
-                                        .colorScheme
-                                        .onBackground,
-                                    ta: 0,
-                                  ),
-                                );
-                              }),
-                              SizedBox(
-                                width: widthSize * 0.05,
-                              ),
-                              SizedBox(
-                                width: widthSize * 0.15,
-                                child: IconButton(
-                                  onPressed: () {
-                                    startPrice -= 5000;
-                                    if (startPrice < 10000) {
-                                      startPrice += 5000;
-                                      errorAlert(context);
-                                    } else {
-                                      context
-                                          .read<OpenAuctionPriceController>()
-                                          .minusStartPrice(context);
-                                    }
-                                  },
-                                  icon: Icon(
-                                    Icons.remove,
-                                    size: widthSize * 0.1,
-                                    color: Colors.blue,
-                                  ),
+                        width: 400,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                                width: widthSize * 0.3,
+                                child: TextBig(
+                                  msg: "경매 시작가 : ",
+                                  clr: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  ta: 0,
+                                )),
+                            BlocBuilder<OpenAuctionPriceController, int>(
+                                builder: (context, state) {
+                              startPrice = state;
+                              return SizedBox(
+                                width: widthSize * 0.3,
+                                child: TextBig(
+                                  msg:
+                                      "${NumberFormat('#,###').format(state)} 원",
+                                  clr: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                  ta: 0,
                                 ),
-                              ),
-                              SizedBox(
-                                width: widthSize * 0.05,
-                              ),
-                              SizedBox(
-                                width: widthSize * 0.15,
-                                child: IconButton(
-                                  onPressed: () {
+                              );
+                            }),
+                            SizedBox(
+                              width: widthSize * 0.05,
+                            ),
+                            SizedBox(
+                              width: widthSize * 0.15,
+                              child: IconButton(
+                                onPressed: () {
+                                  startPrice -= 5000;
+                                  if (startPrice < 10000) {
+                                    startPrice += 5000;
+                                    errorAlert(context);
+                                  } else {
                                     context
                                         .read<OpenAuctionPriceController>()
-                                        .plusStartPrice();
-                                  },
-                                  icon: Icon(
-                                    Icons.add,
-                                    size: widthSize * 0.1,
-                                    color: Colors.red,
-                                  ),
+                                        .minusStartPrice(context);
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.remove,
+                                  size: widthSize * 0.1,
+                                  color: Colors.blue,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              width: widthSize * 0.05,
+                            ),
+                            SizedBox(
+                              width: widthSize * 0.15,
+                              child: IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<OpenAuctionPriceController>()
+                                      .plusStartPrice();
+                                },
+                                icon: Icon(
+                                  Icons.add,
+                                  size: widthSize * 0.1,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -234,7 +228,6 @@ class OpenAuctionPage extends StatelessWidget {
     await context.read<OpenAuctionImgController>().selectImage();
   }
 
-  
   //경매 열기 확인버튼 누르면 작동
   openRequest(BuildContext context, int startprice, String title, String fish,
       String content, String filepath) async {
@@ -242,8 +235,6 @@ class OpenAuctionPage extends StatelessWidget {
 
     String pic =
         '${prefs.get('uid')}${DateFormat('yy-MM-dd_HH-mm-ss').format(DateTime.now())}.jpg';
-    ResponseResult result;
-    bool uploadeResult = false;
     Map<String, String> postdata = {
       'pricestart': startprice.toString(),
       'title': title,
@@ -251,7 +242,8 @@ class OpenAuctionPage extends StatelessWidget {
       'fish': fish,
       'pic': pic
     };
-    var rs = await context
+    // ignore: use_build_context_synchronously
+    await context
         .read<OpenAuctionImgController>()
         .openAuction(postdata, filepath, context);
   }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
+import 'package:fishauction_app/Model_datahandler/static_for_datahandler.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,14 +7,14 @@ import 'datahandler_balance.dart';
 
 class DatahandlerBalanceImpl implements DatahandlerBalance {
   Dio dio = Dio();
-  String url = "${defaultURL}/balance/";
+  String url = "$defaultURL/balance/";
 
   //포인트 충전하기
   @override
   Future<String?> postForChargePoints(int amount) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var accessToken = prefs.get('accessToken'); // header에 들어갈 accesstoken
-    print(accessToken);
+    // print(accessToken);
     var headers = {
       'accept': 'application/json',
       'Authorization': "Bearer $accessToken"
@@ -23,7 +23,7 @@ class DatahandlerBalanceImpl implements DatahandlerBalance {
       "method": "charge",
       "amount": "$amount"
     }; // body
-    ResponseResult rs = ResponseResult.processing;
+    ResponseResult.processing;
     Response response;
     try {
       // request 실행. 그 결과를 response에 받기.
@@ -34,11 +34,11 @@ class DatahandlerBalanceImpl implements DatahandlerBalance {
       // response 의 statuscode가 성공(200)일때만 body 의 result 항목 리턴.
       // 성공(200)이 아닌 경우 마지막에 null 리턴하기.
       if (response.statusCode == 200) {
-        rs = ResponseResult.success;
+        ResponseResult.success;
         return response.data["result"];
       }
     } catch (e) {
-      rs = ResponseResult.error;
+      ResponseResult.error;
       Logger().e("error on Datahandler : $e");
     }
     // 성공(200)이 아닌 경우 마지막에 null 리턴하기.
@@ -52,18 +52,18 @@ class DatahandlerBalanceImpl implements DatahandlerBalance {
     var accessToken = prefs.get('accessToken');
     var headers = {'accept': 'application/json', 'Authorization': "Bearer $accessToken"};
     Map<String, String> data = {"method": "convert", "amount": "$amount"};
-    ResponseResult rs = ResponseResult.processing;
+    ResponseResult.processing;
     try {
       Response response = await dio.post(url,
           data: data,
           options:
               Options(headers: headers, contentType: Headers.jsonContentType));
       if (response.statusCode == 200) {
-        rs = ResponseResult.success;
+        ResponseResult.success;
         return response.data["result"];
       }
     } catch (e) {
-      rs = ResponseResult.error;
+      ResponseResult.error;
       Logger().e("error on Datahandler : $e");
     }
     return null;
@@ -85,7 +85,7 @@ class DatahandlerBalanceImpl implements DatahandlerBalance {
       }
     } catch (e) {
       Logger().e("error on Datahandler : $e");
-      return null;
     }
+    return null;
   } // end of getMyPoints
 }

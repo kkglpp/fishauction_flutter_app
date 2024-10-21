@@ -1,6 +1,6 @@
 import 'package:fishauction_app/Model_datahandler/datahandler_auctions.dart';
 import 'package:dio/dio.dart';
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
+import 'package:fishauction_app/Model_datahandler/static_for_datahandler.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,8 +25,8 @@ class DatahandlerAuctionsImpl implements DatahandlerAuctions {
       return response;
       // return null;
     } catch (e) {
-      print("로그인 에러 발생 in dataHandler");
-      print(e);
+      // print("로그인 에러 발생 in dataHandler");
+      // print(e);
       return null;
     }
 

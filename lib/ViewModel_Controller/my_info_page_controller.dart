@@ -1,4 +1,4 @@
-import 'package:fishauction_app/Model_Repository/balanceRepository_impl.dart';
+import 'package:fishauction_app/Model_Repository/balance_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyinfoPageController extends Cubit<int> {
@@ -6,7 +6,7 @@ class MyinfoPageController extends Cubit<int> {
 
   loadMyPoints() async {
     int myPoints = await BalanceRepositoryImpl ().getMyPoints();
-    print("loadMypoints");
+    // print("loadMypoints");
     emit(myPoints);
   } //end of loadMyPoints
 }//end of class

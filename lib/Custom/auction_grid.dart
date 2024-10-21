@@ -1,10 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Custom/textSmall.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/Custom/text_small.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -49,7 +48,7 @@ class AuctionGrid extends StatelessWidget {
         100;
         // print("Gird 열기");
     return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(20)),
             color: Colors.blueGrey),
         child: Column(

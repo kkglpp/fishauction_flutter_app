@@ -21,7 +21,7 @@ AuctionModel _$AuctionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AuctionModel {
   int get auctionid => throw _privateConstructorUsedError;
-  String get seller_id => throw _privateConstructorUsedError;
+  String get sellerId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   String get pic => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $AuctionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int auctionid,
-      String seller_id,
+      String sellerId,
       String title,
       String content,
       String pic,
@@ -74,7 +74,7 @@ class _$AuctionModelCopyWithImpl<$Res, $Val extends AuctionModel>
   @override
   $Res call({
     Object? auctionid = null,
-    Object? seller_id = null,
+    Object? sellerId = null,
     Object? title = null,
     Object? content = null,
     Object? pic = null,
@@ -91,9 +91,9 @@ class _$AuctionModelCopyWithImpl<$Res, $Val extends AuctionModel>
           ? _value.auctionid
           : auctionid // ignore: cast_nullable_to_non_nullable
               as int,
-      seller_id: null == seller_id
-          ? _value.seller_id
-          : seller_id // ignore: cast_nullable_to_non_nullable
+      sellerId: null == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -149,7 +149,7 @@ abstract class _$$AuctionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int auctionid,
-      String seller_id,
+      String sellerId,
       String title,
       String content,
       String pic,
@@ -174,7 +174,7 @@ class __$$AuctionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? auctionid = null,
-    Object? seller_id = null,
+    Object? sellerId = null,
     Object? title = null,
     Object? content = null,
     Object? pic = null,
@@ -191,9 +191,9 @@ class __$$AuctionModelImplCopyWithImpl<$Res>
           ? _value.auctionid
           : auctionid // ignore: cast_nullable_to_non_nullable
               as int,
-      seller_id: null == seller_id
-          ? _value.seller_id
-          : seller_id // ignore: cast_nullable_to_non_nullable
+      sellerId: null == sellerId
+          ? _value.sellerId
+          : sellerId // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
           ? _value.title
@@ -244,7 +244,7 @@ class __$$AuctionModelImplCopyWithImpl<$Res>
 class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
   const _$AuctionModelImpl(
       {required this.auctionid,
-      required this.seller_id,
+      required this.sellerId,
       required this.title,
       required this.content,
       required this.pic,
@@ -262,7 +262,7 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
   @override
   final int auctionid;
   @override
-  final String seller_id;
+  final String sellerId;
   @override
   final String title;
   @override
@@ -286,7 +286,7 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuctionModel(auctionid: $auctionid, seller_id: $seller_id, title: $title, content: $content, pic: $pic, fish: $fish, view: $view, pricestart: $pricestart, pricenow: $pricenow, insertdate: $insertdate, deletedate: $deletedate, issuccessed: $issuccessed)';
+    return 'AuctionModel(auctionid: $auctionid, sellerId: $sellerId, title: $title, content: $content, pic: $pic, fish: $fish, view: $view, pricestart: $pricestart, pricenow: $pricenow, insertdate: $insertdate, deletedate: $deletedate, issuccessed: $issuccessed)';
   }
 
   @override
@@ -295,7 +295,7 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
     properties
       ..add(DiagnosticsProperty('type', 'AuctionModel'))
       ..add(DiagnosticsProperty('auctionid', auctionid))
-      ..add(DiagnosticsProperty('seller_id', seller_id))
+      ..add(DiagnosticsProperty('sellerId', sellerId))
       ..add(DiagnosticsProperty('title', title))
       ..add(DiagnosticsProperty('content', content))
       ..add(DiagnosticsProperty('pic', pic))
@@ -315,8 +315,8 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
             other is _$AuctionModelImpl &&
             (identical(other.auctionid, auctionid) ||
                 other.auctionid == auctionid) &&
-            (identical(other.seller_id, seller_id) ||
-                other.seller_id == seller_id) &&
+            (identical(other.sellerId, sellerId) ||
+                other.sellerId == sellerId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.pic, pic) || other.pic == pic) &&
@@ -339,7 +339,7 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
   int get hashCode => Object.hash(
       runtimeType,
       auctionid,
-      seller_id,
+      sellerId,
       title,
       content,
       pic,
@@ -368,7 +368,7 @@ class _$AuctionModelImpl with DiagnosticableTreeMixin implements _AuctionModel {
 abstract class _AuctionModel implements AuctionModel {
   const factory _AuctionModel(
       {required final int auctionid,
-      required final String seller_id,
+      required final String sellerId,
       required final String title,
       required final String content,
       required final String pic,
@@ -386,7 +386,7 @@ abstract class _AuctionModel implements AuctionModel {
   @override
   int get auctionid;
   @override
-  String get seller_id;
+  String get sellerId;
   @override
   String get title;
   @override

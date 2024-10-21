@@ -1,9 +1,8 @@
-import 'package:fishauction_app/Custom/insertTextBox.dart';
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Model_Repository/authRepository_impl.dart';
-import 'package:fishauction_app/View/tabbarViewPage.dart';
-import 'package:fishauction_app/ViewModel_Controller/loginPage_Controller.dart';
+import 'package:fishauction_app/Custom/insert_text_box.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/View/tabbar_view_page.dart';
+import 'package:fishauction_app/ViewModel_Controller/login_page_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -32,6 +31,7 @@ class LoginPage extends StatelessWidget {
                         .doLogin(idTec.text, pwTec.text);
                     idTec.text = "";
                     pwTec.text = "";
+                    // ignore: use_build_context_synchronously
                     loginAlert(context, loginrs);
                   },
                   style:

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'doneAuction_model.dart';
+part of 'done_auction_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

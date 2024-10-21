@@ -1,11 +1,11 @@
-import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/myauctionList_RadioController.dart';
-import 'package:fishauction_app/Custom/auctionCard.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/Custom/textTitle.dart';
-import 'package:fishauction_app/Model_model/doneAuction_model.dart';
-import 'package:fishauction_app/View/auctionDonePage.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_page_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/myauction_list_radio_controller.dart';
+import 'package:fishauction_app/Custom/auction_card.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/Model_model/done_auction_model.dart';
+import 'package:fishauction_app/View/auction_done_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +14,7 @@ class MyAuctionList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var check;
+    int check =1;
 
     return Scaffold(
       body: BlocBuilder<MyAuctionListRadioController,

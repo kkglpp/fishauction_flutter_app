@@ -1,7 +1,7 @@
-import 'package:fishauction_app/Custom/textBig.dart';
-import 'package:fishauction_app/Custom/textMiddle.dart';
-import 'package:fishauction_app/View/loginPage.dart';
-import 'package:fishauction_app/View/registerPage.dart';
+import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/View/login_page.dart';
+import 'package:fishauction_app/View/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
-                  fixedSize: Size(widthSize!, widthSize!/10)
+                  fixedSize: Size(widthSize, widthSize/10)
                 ),                
                 onPressed: ()=>move2Login(context),
                 child: 
@@ -54,7 +54,7 @@ class Home extends StatelessWidget {
                 ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(0,10,0,0),
+              padding: const EdgeInsets.fromLTRB(0,10,0,0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
@@ -91,7 +91,7 @@ move2Register(BuildContext context) {
   Navigator.push(
     context,
     MaterialPageRoute(builder: (context){
-      return RegisterPage();
+      return const RegisterPage();
     })
   );
 } 

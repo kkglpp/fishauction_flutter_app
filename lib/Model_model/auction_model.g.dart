@@ -9,7 +9,7 @@ part of 'auction_model.dart';
 _$AuctionModelImpl _$$AuctionModelImplFromJson(Map<String, dynamic> json) =>
     _$AuctionModelImpl(
       auctionid: json['auctionid'] as int,
-      seller_id: json['seller_id'] as String,
+      sellerId: json['seller_id'] as String, // 서버에서는 seller_id로 값을 준다.
       title: json['title'] as String,
       content: json['content'] as String,
       pic: json['pic'] as String,
@@ -25,7 +25,7 @@ _$AuctionModelImpl _$$AuctionModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AuctionModelImplToJson(_$AuctionModelImpl instance) =>
     <String, dynamic>{
       'auctionid': instance.auctionid,
-      'seller_id': instance.seller_id,
+      'seller_id': instance.sellerId,
       'title': instance.title,
       'content': instance.content,
       'pic': instance.pic,

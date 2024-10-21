@@ -1,9 +1,9 @@
-import 'package:fishauction_app/ViewModel_Controller/auctionWholeList_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/myInfoPage_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/myauctionList_RadioController.dart';
-import 'package:fishauction_app/View/auctionWholeList.dart';
-import 'package:fishauction_app/View/myAuctionList.dart';
-import 'package:fishauction_app/View/myInfoPage.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_whole_list_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/myInfo_page_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/myauction_list_radio_controller.dart';
+import 'package:fishauction_app/View/auction_whole_list.dart';
+import 'package:fishauction_app/View/my_auction_list.dart';
+import 'package:fishauction_app/View/my_info_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

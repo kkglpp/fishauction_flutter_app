@@ -9,7 +9,7 @@ class AuctionModel with _$AuctionModel{
   const factory AuctionModel({
 
   required int auctionid,
-  required String seller_id,
+  required String sellerId,
   required String title,
   required String content,
   required String pic,

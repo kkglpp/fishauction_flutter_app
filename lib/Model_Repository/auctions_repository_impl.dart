@@ -4,12 +4,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:fishauction_app/Model_datahandler/datahandler_auctions_impl.dart';
 import 'package:fishauction_app/Model_datahandler/datahandler_http_impl.dart';
-import 'package:fishauction_app/Model_Repository/auctionsRepository.dart';
+import 'package:fishauction_app/Model_Repository/auctions_repository.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Model_datahandler/staticforDatahandler.dart';
+import '../Model_datahandler/static_for_datahandler.dart';
 
 class AuctionsRepositoryImpl implements AuctionsRepository {
   DatahandlerAuctionsImpl datasource = DatahandlerAuctionsImpl();

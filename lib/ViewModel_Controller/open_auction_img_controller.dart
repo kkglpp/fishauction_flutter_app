@@ -1,7 +1,7 @@
-import 'dart:io';
+// ignore_for_file: use_build_context_synchronously
 
-import 'package:fishauction_app/Model_Repository/auctionsRepository_impl.dart';
-import 'package:fishauction_app/Model_datahandler/staticforDatahandler.dart';
+import 'package:fishauction_app/Model_Repository/auctions_repository_impl.dart';
+import 'package:fishauction_app/Model_datahandler/static_for_datahandler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Custom/textBig.dart';
-import '../Custom/textMiddle.dart';
+import '../Custom/text_big.dart';
+import '../Custom/text_middle.dart';
 import '../Model_datahandler/firebase_datasource_impl.dart';
 
 class OpenAuctionImgController extends Cubit<XFile?> {

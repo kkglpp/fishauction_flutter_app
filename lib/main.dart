@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       themeMode: ThemeMode.dark,
-      darkTheme: ThemeData.from(colorScheme: ColorScheme.dark()),
+      darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
       home: const Home(),
       // home: const loginPage(),
       // home: const RegisterPage(),

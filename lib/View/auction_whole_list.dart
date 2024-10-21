@@ -1,13 +1,13 @@
-import 'package:fishauction_app/ViewModel_Controller/auctionImg_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionPage_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionPage_SliderController.dart';
-import 'package:fishauction_app/ViewModel_Controller/auctionWholeList_Controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/openAuctionImg_controller.dart';
-import 'package:fishauction_app/ViewModel_Controller/openAuctionPrice_controller.dart';
-import 'package:fishauction_app/Custom/auctionGrid.dart';
+import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_page_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_page_slider_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/auction_whole_list_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/open_auction_img_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/open_auction_price_controller.dart';
+import 'package:fishauction_app/Custom/auction_grid.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
-import 'package:fishauction_app/View/auctionPage.dart';
-import 'package:fishauction_app/View/openAuctionPage.dart';
+import 'package:fishauction_app/View/auction_page.dart';
+import 'package:fishauction_app/View/open_auction_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -124,7 +124,7 @@ class AuctionWholeList extends StatelessWidget {
             create: (context) => OpenAuctionImgController(null),
           ),
           BlocProvider(create: (context) => OpenAuctionPriceController(10000))
-        ], child: OpenAuctionPage());
+        ], child: const OpenAuctionPage());
       },
     )); //end of Navigator
   }

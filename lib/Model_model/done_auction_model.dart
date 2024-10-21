@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'doneAuction_model.freezed.dart';
-part 'doneAuction_model.g.dart';
+part 'done_auction_model.freezed.dart';
+part 'done_auction_model.g.dart';
 
 @freezed
 class DoneAuctionModel with _$DoneAuctionModel {
