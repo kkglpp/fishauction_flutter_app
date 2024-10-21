@@ -2,8 +2,8 @@
 import 'dart:io';
 
 import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
-import 'package:fishauction_app/Custom/text_small.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_small.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';

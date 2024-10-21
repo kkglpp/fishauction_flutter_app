@@ -1,6 +1,6 @@
-import 'package:fishauction_app/Custom/insert_text_box.dart';
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/insert_text_box.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
 import 'package:fishauction_app/View/tabbar_view_page.dart';
 import 'package:fishauction_app/ViewModel_Controller/login_page_controller.dart';
 import 'package:flutter/material.dart';

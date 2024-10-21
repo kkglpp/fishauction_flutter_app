@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:fishauction_app/Model_Repository/auth_repository.dart';
+import 'package:fishauction_app/const/dataSource/datakey.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +16,6 @@ class AuthRepositoryImpl implements AuthRepository {
     // DatahandlerHttpImpl datasource = DatahandlerHttpImpl();
     DatahandlerAuthImpl datasource = DatahandlerAuthImpl();
     Response? response = await datasource.postForLogin(uid, upw);
-
     // dataHandler 에서 request 하기 전에 오류 났을 경우 처리.
     if (response == null) {
       return false;
@@ -25,11 +26,17 @@ class AuthRepositoryImpl implements AuthRepository {
       List rbody = response.data;
       Headers rheader = response.headers;
       // String rheader =response.headers['access_token']!.first;
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('accessToken', rheader['access_token']!.first);
-      await prefs.setString('refreshToken', rheader['refresh_token']!.first);
-      await prefs.setString('nickname', rbody[0]['nickname']!);
-      await prefs.setString('uid', uid);
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // await prefs.setString('accessToken', rheader['access_token']!.first);
+      // await prefs.setString('refreshToken', rheader['refresh_token']!.first);
+      // await prefs.setString('nickname', rbody[0]['nickname']!);
+      // await prefs.setString('uid', uid);
+      final storage = FlutterSecureStorage();
+      await storage.write(key: ACCESS_TOKEN_KEY,value:  rheader['access_token']!.first);
+      await storage.write(key:RFRESH_TOKEN_KEY,value:  rheader['refresh_token']!.first);
+      await storage.write(key:NiCKNAME,value:  rbody[0]['nickname']!);
+      await storage.write(key:USER_ID, value: uid);      
+      
     } catch (e) {
       Logger().e(e);
       return false;

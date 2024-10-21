@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../Custom/text_big.dart';
-import '../Custom/text_middle.dart';
+import '../const/widget.custom/text_big.dart';
+import '../const/widget.custom/text_middle.dart';
 import '../Model_datahandler/firebase_datasource_impl.dart';
 
 class OpenAuctionImgController extends Cubit<XFile?> {

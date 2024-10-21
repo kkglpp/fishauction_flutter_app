@@ -1,9 +1,9 @@
-import 'package:fishauction_app/ViewModel_Controller/myInfo_page_controller.dart';
+import 'package:fishauction_app/ViewModel_Controller/my_info_page_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/point_changing_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/point_charger_controller.dart';
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
-import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_title.dart';
 import 'package:fishauction_app/View/point_charging_page.dart';
 import 'package:fishauction_app/View/point_refund_page.dart';
 import 'package:flutter/material.dart';

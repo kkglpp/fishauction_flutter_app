@@ -4,7 +4,7 @@ import 'package:fishauction_app/ViewModel_Controller/auction_page_slider_control
 import 'package:fishauction_app/ViewModel_Controller/auction_whole_list_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/open_auction_img_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/open_auction_price_controller.dart';
-import 'package:fishauction_app/Custom/auction_grid.dart';
+import 'package:fishauction_app/const/widget.custom/auction_grid.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:fishauction_app/View/auction_page.dart';
 import 'package:fishauction_app/View/open_auction_page.dart';

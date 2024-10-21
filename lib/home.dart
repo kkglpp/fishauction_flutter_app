@@ -1,5 +1,5 @@
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
 import 'package:fishauction_app/View/login_page.dart';
 import 'package:fishauction_app/View/register_page.dart';
 import 'package:flutter/material.dart';

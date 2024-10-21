@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:fishauction_app/ViewModel_Controller/open_auction_img_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/open_auction_price_controller.dart';
-import 'package:fishauction_app/Custom/insert_text_box.dart';
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
-import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/const/widget.custom/insert_text_box.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_title.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

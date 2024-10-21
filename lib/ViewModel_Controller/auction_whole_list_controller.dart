@@ -1,5 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-import 'package:fishauction_app/Custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:fishauction_app/Model_Repository/auctions_repository_impl.dart';
 import 'package:flutter/material.dart';

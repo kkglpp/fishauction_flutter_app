@@ -1,9 +1,9 @@
 import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auction_page_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/myauction_list_radio_controller.dart';
-import 'package:fishauction_app/Custom/auction_card.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
-import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/const/widget.custom/auction_card.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_title.dart';
 import 'package:fishauction_app/Model_model/done_auction_model.dart';
 import 'package:fishauction_app/View/auction_done_page.dart';
 import 'package:flutter/material.dart';

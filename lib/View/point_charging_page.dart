@@ -2,15 +2,15 @@
 
 import 'package:fishauction_app/ViewModel_Controller/point_changing_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/point_charger_controller.dart';
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
-import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../Model_datahandler/static_for_datahandler.dart';
-import '../ViewModel_Controller/myInfo_page_controller.dart';
+import '../ViewModel_Controller/my_info_page_controller.dart';
 
 class PointChargingPage extends StatelessWidget {
   const PointChargingPage({super.key});

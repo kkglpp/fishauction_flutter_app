@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Custom/custom_alerts.dart';
+import '../const/widget.custom/custom_alerts.dart';
 
 class OpenAuctionPriceController extends Cubit <int>{
   OpenAuctionPriceController(super.initialState);

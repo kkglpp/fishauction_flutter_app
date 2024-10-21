@@ -6,13 +6,13 @@ import 'package:fishauction_app/Model_Repository/auctions_repository_impl.dart';
 import 'package:fishauction_app/ViewModel_Controller/auctionimg_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auction_page_controller.dart';
 import 'package:fishauction_app/ViewModel_Controller/auction_page_slider_controller.dart';
-import 'package:fishauction_app/Custom/text_small.dart';
-import 'package:fishauction_app/Custom/text_title.dart';
+import 'package:fishauction_app/const/widget.custom/text_small.dart';
+import 'package:fishauction_app/const/widget.custom/text_title.dart';
 import 'package:fishauction_app/Model_model/auction_model.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fishauction_app/Custom/text_big.dart';
-import 'package:fishauction_app/Custom/text_middle.dart';
+import 'package:fishauction_app/const/widget.custom/text_big.dart';
+import 'package:fishauction_app/const/widget.custom/text_middle.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:intl/intl.dart';
