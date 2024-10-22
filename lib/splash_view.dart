@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+import 'package:fishauction_app/Model_Repository/auth_repository_impl.dart';
 import 'package:fishauction_app/View/tabbar_view_page.dart';
 import 'package:fishauction_app/const/dataSource/datakey.dart';
 import 'package:fishauction_app/home.dart';
@@ -15,22 +17,20 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-
     checkToken;
   }
 
   void checkToken() async {
-    const storage = FlutterSecureStorage();
-    final accessToken = await storage.read(key: ACCESS_TOKEN_KEY);
-    final refreshToken = await storage.read(key: RERESH_TOKEN_KEY);
+    AuthRepositoryImpl rep = AuthRepositoryImpl();
+    bool rs = await rep.checkToken();
 
-    if (accessToken == null || refreshToken == null) {
+    if (rs) {
       MaterialPageRoute(builder: (context) {
-        return const Home();
+        return const TabbarViewPage();
       });
     } else {
       MaterialPageRoute(builder: (context) {
-        return const TabbarViewPage();
+        return const Home();
       });
     }
   }
