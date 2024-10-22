@@ -34,7 +34,7 @@ class AuthRepositoryImpl implements AuthRepository {
       // await prefs.setString('nickname', rbody[0]['nickname']!);
       // await prefs.setString('uid', uid);
       await storage.write(key: ACCESS_TOKEN_KEY,value:  rheader['access_token']!.first);
-      await storage.write(key:RFRESH_TOKEN_KEY,value:  rheader['refresh_token']!.first);
+      await storage.write(key:RERESH_TOKEN_KEY,value:  rheader['refresh_token']!.first);
       await storage.write(key:NiCKNAME,value:  rbody[0]['nickname']!);
       await storage.write(key:USER_ID, value: uid);      
       

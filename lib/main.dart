@@ -2,6 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fishauction_app/firebase_options.dart';
 import 'package:fishauction_app/home.dart';
+import 'package:fishauction_app/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' ;
 import 'package:responsive_framework/breakpoint.dart';
@@ -37,10 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
-      home: const Home(),
-      // home: const loginPage(),
-      // home: const RegisterPage(),
-      // home: const AuctionWholeList(),
+      home: const SplashView(),
       
       debugShowCheckedModeBanner: false,
     );
